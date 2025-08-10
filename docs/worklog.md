@@ -20,3 +20,16 @@
 - Next research issues
 - Create docs branch for the worklog commits
 ---
+## 2025-08-10
+
+**What I did:**
+- Research functional requirements
+- Research competition and inspiration
+- Created docs branch for the worklog commits
+- Created research.md
+
+**What needs to happen first:**
+- Add new issues to the project board for sketches and design.
+- Brainstorm ideas
+- Pick up new issues
+---
