@@ -33,3 +33,40 @@
 - Brainstorm ideas
 - Pick up new issues
 ---
+## 2025-08-13
+
+**What I did:**
+- Sketched homepage with timers
+
+**What needs to happen first:**
+- Merge homepage sketches
+- Sketch other pages
+- Create Styleguide
+---
+## 2025-08-14
+
+**What I did:**
+- I made a final homepage sketch
+
+**What needs to happen first:**
+- Sketch other pages
+- Create Styleguide
+---
+## 2025-08-17
+
+**What I did:**
+- Sketched other pages
+- Started on the styleguide
+
+**What needs to happen first:**
+- Draw data models
+- Create Styleguide
+---
+## 2025-08-19
+
+**What I did:**
+- I drew data models for every page
+
+**What needs to happen first:**
+- Create Styleguide
+---
