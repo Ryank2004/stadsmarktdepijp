@@ -1,0 +1,296 @@
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+@font-face {
+   font-family: "Work Sans";
+   src: url(/fonts/work-sans.woff2);
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "Sale";
+   src: url(/fonts/sale-italic.woff2);
+   font-display: swap;
+}
+
+:root {
+   font-family: "Inter", sans-serif;
+   --color-primary: #E6452D;
+   --color-light: #F2EDE9;
+   --color-dark: #1E201D;
+   --animation-bounce: 0.4s cubic-bezier(0.35, 1.5, 0.6, 1);
+}
+
+body {
+   background-color: var(--color-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family: "Sale", sans-serif;
+   color: var(--color-primary);
+   /* letter-spacing: -5px; */
+   text-transform: uppercase;
+}
+
+h1 {
+   font-size: clamp(2.5rem, 10vw + .7rem, 12rem);
+}
+
+.title-spacing {
+   letter-spacing: -10px;
+}
+
+a {
+   text-decoration: none;
+}
+
+ul,
+li {
+   list-style: none;
+}
+
+.container {
+   padding-left: 5vw;
+   padding-right: 5vw;
+   margin: 0 auto;
+}
+
+/* ------------------------- Link -------------------------------------------------- */
+
+.link {
+   position: relative;
+   border: 0;
+   outline: 0;
+}
+
+.link > .link-click {
+   cursor: pointer;
+   border: 0;
+   outline: 0;
+   background-color: transparent;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   height: 2.4em;
+}
+
+.link > .link-click .link-content {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0 1em;
+   height: 100%;
+}
+
+.link > .link-click .link-content .link-text {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   padding: 0.2em 0;
+}
+
+.link > .link-click .link-content .link-text span {
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 0.85;
+   color: var(--color-dark);
+   text-transform: uppercase;
+   transform: translateY(5%) rotate(0.001deg);
+   transition: transform var(--animation-bounce);
+}
+
+.link[data-link-status="active"] > .link-click .link-content .link-text {
+   opacity: 0.5;
+}
+
+.link > .link-click .link-content .link-text span.duplicate {
+   position: absolute;
+   transform: translateY(125%) rotate(0.001deg);
+}
+
+@media (hover: hover) {
+
+   .link > .link-hover:hover .link-content .link-text span {
+      transform: translateY(-115%) rotate(0.001deg);
+   }
+
+   .link > .link-hover:hover .link-content .link-text span.duplicate {
+      transform: translateY(5%) rotate(0.001deg);
+   }
+}
+
+/* ------------------------- Text Link -------------------------------------------------- */
+.text-link {
+   position: relative;
+   border: 0;
+   outline: 0;
+}
+
+.text-link .link-click {
+   cursor: pointer;
+   border: 0;
+   outline: 0;
+   background-color: transparent;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   height: 2em;
+}
+
+.text-link .link-content {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+}
+
+.text-link .link-content .link-text {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   padding: 0.2em 0;
+}
+
+.text-link .link-content .link-text span {
+   font-weight: 400;
+   font-style: normal;
+   font-size: 0.8em;
+   line-height: 1;
+   color: var(--color-light);
+   letter-spacing: -0.015em;
+   color: var(--color-light);
+   transform: translateY(5%) rotate(0.001deg);
+   transition: all var(--animation-bounce);
+}
+
+.text-link .link-content .link-text span.duplicate {
+   position: absolute;
+   transform: translateY(155%) rotate(0.001deg);
+   opacity: 0.5;
+}
+
+@media (hover: hover) {
+
+   .text-link .link-click:hover .link-content .link-text span {
+      transform: translateY(-165%) rotate(0.001deg);
+   }
+
+   .text-link .link-click:hover .link-content .link-text span.duplicate {
+      transform: translateY(5%) rotate(0.001deg);
+   }
+}
+
+/* ------------------------- Social - Icon -------------------------------------------------- */
+
+.s-icon {
+   position: relative;
+}
+
+.s-icon .s-icon-click {
+   cursor: pointer;
+   border: 0;
+   outline: 0;
+   background-color: transparent;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   height: 1.6em;
+   width: 1.6em;
+}
+
+.s-icon .s-icon-shadow {
+   background-color: var(--color-dark);
+   border-radius: 20em;
+   opacity: 0.2;
+}
+
+.s-icon .s-icon-fill {
+   background-color: var(--color-dark);
+   border-radius: 20em;
+   border: var(--border);
+}
+
+.s-icon .s-icon-content {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+   transform: translateY(0px) rotate(0.001deg);
+   transition: transform var(--animation-bounce);
+}
+
+.s-icon .s-icon-content .s-icon-text {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   width: 80%;
+   height: 80%;
+}
+
+.s-icon .s-icon-content .s-icon-text i svg {
+   width: 100%;
+   display: block;
+}
+
+.s-icon .s-icon-content .s-icon-text i {
+   position: relative;
+   display: flex;
+   height: 70%;
+   width: 70%;
+   transform: translateY(0%) rotate(0.001deg);
+   transition: transform var(--animation-bounce);
+}
+
+.s-icon .s-icon-content .s-icon-text i.duplicate {
+   position: absolute;
+   transform: translateY(120%) rotate(0.001deg);
+}
+
+.s-icon .s-icon-content .s-icon-text i path {
+   fill: var(--color-light);
+}
+
+.s-icon .s-icon-content .s-icon-text i.duplicate path {
+   fill: var(--color-light);
+   opacity: 0.5;
+}
+
+@media (hover: hover) {
+
+   .s-icon .s-icon-hover:hover .s-icon-content {
+      transform: translateY(calc(var(--shadow-distance) * -1)) rotate(0.001deg);
+   }
+
+   nav .s-icon .s-icon-hover:hover .s-icon-content {
+      transform: translateY(0) rotate(0.001deg);
+   }
+
+   .s-icon .s-icon-hover:hover .s-icon-content .s-icon-text i {
+      transform: translateY(-120%) rotate(0.001deg);
+   }
+
+   .s-icon .s-icon-hover:hover .s-icon-content .s-icon-text i.duplicate {
+      transform: translateY(0%) rotate(0.001deg);
+   }
+}
