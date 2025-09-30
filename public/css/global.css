@@ -21,7 +21,7 @@
    --color-primary: #E6452D;
    --color-light: #F2EDE9;
    --color-dark: #1E201D;
-   --animation-bounce: 0.4s cubic-bezier(0.35, 1.5, 0.6, 1);
+   --animation-bounce: 0.4s cubic-bezier(0.33, 1.7, 0.55, 1);
 }
 
 body {
@@ -45,7 +45,7 @@ h1 {
 }
 
 .title-spacing {
-   letter-spacing: -10px;
+   letter-spacing: -4px;
 }
 
 a {
@@ -88,7 +88,7 @@ li {
    display: flex;
    align-items: center;
    justify-content: center;
-   padding: 0 1em;
+   /* padding: 0 1em; */
    height: 100%;
 }
 
@@ -105,6 +105,8 @@ li {
    font-weight: 500;
    font-size: 18px;
    line-height: 0.85;
+   letter-spacing: -1px;
+   padding-right: 4px;
    color: var(--color-dark);
    text-transform: uppercase;
    transform: translateY(5%) rotate(0.001deg);
@@ -118,6 +120,7 @@ li {
 .link > .link-click .link-content .link-text span.duplicate {
    position: absolute;
    transform: translateY(125%) rotate(0.001deg);
+   opacity: 0.5;
 }
 
 @media (hover: hover) {
