@@ -1,36 +1,23 @@
-## 🧾 Titel van de Pull Request
-<!-- Geef een korte en duidelijke beschrijving van wat deze PR doet -->
-
-## 📌 Issue
-Closes #<issue-nummer>  
-<!-- Bijvoorbeeld: Closes #42 -->
-
-## 🧠 Context
-<!-- Leg kort uit waarom deze wijziging nodig is -->
-- [ ] Bug opgelost / nieuwe feature toegevoegd
-- [ ] Code verbeterd / performance verhoogd
-- [ ] Documentatie aangepast
-
-## 🧩 Wat is er veranderd?
-<!-- Beschrijf concreet wat je hebt toegevoegd, verwijderd of aangepast -->
-- Toegevoegd: ...
-- Gewijzigd: ...
-- Verwijderd: ...
-
-## 🧪 Testplan
-<!-- Beschrijf hoe dit getest is of getest moet worden -->
-- [ ] Unit tests uitgevoerd  
-- [ ] Handmatig getest in browser  
-- [ ] CI/CD pipeline doorlopen  
-
-## 📸 Screenshots (optioneel)
-<!-- Voeg voor UI-werk een screenshot of screencast toe -->
-| Voor | Na |
-|------|----|
-| ![old](link) | ![new](link) |
-
-## ✅ Checklist
-- [ ] Code volgt de conventies
-- [ ] Alle tests slagen
-- [ ] Geen console errors
-- [ ] README/documentatie geüpdatet
+## What does this change?
+ 
+ 
+<!-- A PR should have enough detail to be understandable far in the future. e.g what is the problem/why is the change needed, how does it solve it and any questions or points of discussion. Prefer copying information from a GitHub issue over linking to it; the card may not always exist and reviewers may not have access to the board. -->
+ 
+ 
+## How Has This Been Tested?
+ 
+- [ ] User test
+- [ ] Accessibility test
+- [ ] Performance test
+- [ ] Responsive Design test
+- [ ] Device test
+- [ ] Browser test
+ 
+## Images
+ 
+<!-- Usually only applicable to UI changes, what did it look like before and what will it look like after? -->
+ 
+ 
+## How to review
+ 
+<!-- Provide instructions to help others verify the change. This could take the form of "On PROD, do X and witness Y. On this branch, do X and witness Z. " -->
