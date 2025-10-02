@@ -1,5 +1,5 @@
 <div class="text-link">
-    <a class="link-click" href="/" aria-label="Contact">
+    <a class="link-click link-hover" href="/" aria-label="Contact">
         <div class="link-content">
             <div class="link-text">
                 <span class="label">Plan je route</span>
@@ -10,7 +10,7 @@
 </div>
 
 <style>
- .link-click {
+    .link-click {
         display: inline-block;
         font-family: "sale", sans-serif;
         text-transform: uppercase;
@@ -19,16 +19,40 @@
         background-color: white;
         border-radius: 16px;
         width: 100%;
-}
-
-.link-text span {
-    color: var(--color-dark);
-    font-size: 10px;
-}
-
-@media screen and (min-width: 368px) {
-    .link-text span {
-        font-size: 12px;
     }
-}
+
+    .link-text span {
+        color: var(--color-dark);
+        font-size: 10px;
+        padding-right: 3px;
+    }
+
+    @media screen and (min-width: 368px) {
+        .link-text span {
+            font-size: 12px;
+        }
+    }
+
+    @media screen and (min-width: 687px) {
+        .link-click {
+            display: inline-block;
+            font-family: "sale", sans-serif;
+            text-transform: uppercase;
+            padding: 16px 14px;
+            border: 2px solid var(--color-dark);
+            background-color: white;
+            border-radius: 18px;
+            width: 100%;
+        }
+
+        .link-text span {
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .link-text span {
+            font-size: 20px;
+        }
+    }
 </style>
