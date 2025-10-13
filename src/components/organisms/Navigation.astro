@@ -2,6 +2,7 @@
 import Button from "@atoms/Button.astro";
 import { Image } from "astro:assets";
 import SecondaryNav from "@molecules/SecondaryNavigation.astro";
+import logo from "@images/logo.svg";
 ---
 
 <SecondaryNav />
@@ -89,7 +90,7 @@ import SecondaryNav from "@molecules/SecondaryNavigation.astro";
     <div class="nav-logo">
         <a href="/">
             <Image
-                src="/images/logo.svg"
+                src={logo}
                 alt="Stadsmarkt de Pijp"
                 width={140}
                 height={140}
@@ -292,7 +293,7 @@ import SecondaryNav from "@molecules/SecondaryNavigation.astro";
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s ease;
-        z-index: 9999;
+        z-index: 2000;
     }
 
     .menu-overlay.active {

@@ -10,7 +10,8 @@
       "@organisms/*": ["src/components/organisms/*"],
       "@layout/*": ["src/layouts/*"],
       "@data/*": ["src/data/*"],
-      "@lib/*": ["src/lib/*"]
+      "@lib/*": ["src/lib/*"],
+      "@images/*": ["src/assets/images/*"]
     }
   }
 }
