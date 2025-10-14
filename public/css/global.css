@@ -29,6 +29,10 @@
    --spacing-md: 1rem;
    --spacing-lg: 2rem;
 
+   --border-radius-sm: min(4.2vw, 16px);
+   --border-radius-md: min(6vw, 30px);
+   --border-radius-lg: min(8vw, 48px);
+
    /* container padding */
    --container-padding-sm: 3vw;
    --container-padding-md: 5vw;
