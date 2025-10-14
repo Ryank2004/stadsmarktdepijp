@@ -1,0 +1,129 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section class="image-divider-container">
+    <figure class="image-divider">
+        <Image
+            src="/src/assets/images/landmarkt.jpg"
+            alt="Market Image"
+            width={2000}
+            height={1300}
+            class="divider-image"
+        />
+    </figure>
+</section>
+
+<style>
+    .image-divider-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .image-divider {
+        position: relative;
+        margin: 0;
+        width: 100%;
+    }
+
+    .divider-image {
+        width: 100%;
+        height: 30vh;
+        object-fit: cover;
+        display: block;
+        will-change: transform;
+    }
+
+    .image-divider::before,
+    .image-divider::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+        background-color: var(--color-light);
+        z-index: 2;
+    }
+
+    .image-divider::before {
+        top: -1px;
+    }
+
+    .image-divider::after {
+        bottom: -1px;
+        transform: scaleY(-1);
+        background-color: var(--color-dark);
+    }
+
+    @media screen and (min-width: 687px) {
+        .image-divider::before,
+        .image-divider::after {
+            border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+        }
+
+        .divider-image {
+            height: 40vh;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .image-divider::before,
+        .image-divider::after {
+            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+        }
+
+        .divider-image {
+            height: 50vh;
+        }
+    }
+</style>
+
+<script>
+    function initImageParallax() {
+        const image = document.querySelector('.divider-image') as HTMLElement;
+        if (!image) return;
+
+        // Start de foto hoger (negatieve waarde)
+        const startOffset = -30; // Pas dit aan! Hogere waarde = foto begint hoger
+        const parallaxSpeed = 50; // Hoeveel de foto beweegt tijdens scrollen
+
+        let ticking = false;
+
+        const updateParallax = () => {
+            const rect = image.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                // Bereken scroll progress (0 = net in beeld, 1 = bijna uit beeld)
+                const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                
+                // Start hoog (negatief) en beweeg naar beneden
+                const parallaxAmount = startOffset + (scrollProgress * parallaxSpeed);
+                
+                image.style.transform = `translateY(${parallaxAmount}px)`;
+            }
+            
+            ticking = false;
+        };
+
+        const requestTick = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+        updateParallax();
+        window.addEventListener('resize', requestTick, { passive: true });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initImageParallax);
+    } else {
+        initImageParallax();
+    }
+</script>
