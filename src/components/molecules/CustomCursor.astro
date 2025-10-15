@@ -1,0 +1,147 @@
+<div class="custom-cursor">
+    <div class="cursor-dot"></div>
+</div>
+
+<style>
+    /* Verberg de standaard cursor */
+    body {
+        cursor: none;
+    }
+
+    /* Custom cursor container */
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease-out;
+    }
+
+    /* Rode cirkel met wit midden */
+    .cursor-dot {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.33, 1.7, 0.55, 1);
+    }
+
+    /* Wit midden */
+    .cursor-dot::after {
+        content: "";
+        width: 16px;
+        height: 16px;
+        background-color: var(--color-light);
+        border-radius: 50%;
+        transition: all 0.3s cubic-bezier(0.33, 1.7, 0.55, 1);
+    }
+
+    /* Hover state - cursor wordt groter */
+    .custom-cursor.hovering .cursor-dot {
+        width: 40px;
+        height: 40px;
+        background-color: var(--color-primary);
+    }
+
+    .custom-cursor.hovering .cursor-dot::after {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Verberg cursor op mobiel/touch devices */
+    @media (hover: none) and (pointer: coarse) {
+        .custom-cursor {
+            display: none;
+        }
+        
+        body {
+            cursor: auto;
+        }
+    }
+</style>
+
+<script>
+    function initCustomCursor() {
+        const cursor = document.querySelector('.custom-cursor') as HTMLElement;
+        if (!cursor) return;
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        const speed = 0.2; // Lagere waarde = vloeiender (0.1 - 0.3)
+
+        // Vloeiende cursor beweging met easing
+        function animateCursor() {
+            const distX = mouseX - cursorX;
+            const distY = mouseY - cursorY;
+
+            cursorX += distX * speed;
+            cursorY += distY * speed;
+
+            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        // Update muis positie
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Start animatie
+        animateCursor();
+
+        // Hover effect op links en buttons
+        const interactiveElements = document.querySelectorAll('a, button, .link-click, .s-icon-click');
+
+        const addHoverListeners = () => {
+            interactiveElements.forEach((el) => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hovering');
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hovering');
+                });
+            });
+        };
+
+        // Initieel toevoegen
+        addHoverListeners();
+
+        // Observer voor dynamisch toegevoegde elementen
+        const observer = new MutationObserver(() => {
+            const newInteractiveElements = document.querySelectorAll('a, button, .link-click, .s-icon-click');
+            newInteractiveElements.forEach((el) => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hovering');
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hovering');
+                });
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // Initialiseer wanneer pagina geladen is
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCustomCursor);
+    } else {
+        initCustomCursor();
+    }
+</script>
