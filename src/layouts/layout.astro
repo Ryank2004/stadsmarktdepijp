@@ -1,5 +1,6 @@
 ---
 import BackgroundTexture from "@atoms/BackgroundTexture.astro";
+import CustomCursor from "@molecules/CustomCursor.astro";
 import Navigation from "@organisms/Navigation.astro";
 ---
 
@@ -31,6 +32,7 @@ import Navigation from "@organisms/Navigation.astro";
         /> -->
     </head>
     <body>
+        <!-- <CustomCursor /> -->
         <BackgroundTexture />
         <Navigation />
         <slot />
@@ -39,9 +41,3 @@ import Navigation from "@organisms/Navigation.astro";
         import "../scripts/smooth-scroll";
     </script>
 </html>
-
-<style>
-    body {
-        margin-bottom: 2000px;
-    }
-</style>

@@ -1,11 +1,12 @@
 ---
 import { Image } from "astro:assets";
+import landmarkt from "@images/landmarkt.webp";
 ---
 
 <section class="image-divider-container">
     <figure class="image-divider">
         <Image
-            src="/src/assets/images/landmarkt.jpg"
+            src={landmarkt}
             alt="Market Image"
             width={2000}
             height={1300}
@@ -43,7 +44,7 @@ import { Image } from "astro:assets";
         left: 0;
         width: 100%;
         height: 60px;
-        border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+        border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
         background-color: var(--color-light);
         z-index: 2;
     }
@@ -59,11 +60,6 @@ import { Image } from "astro:assets";
     }
 
     @media screen and (min-width: 687px) {
-        .image-divider::before,
-        .image-divider::after {
-            border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
-        }
-
         .divider-image {
             height: 40vh;
         }
@@ -86,21 +82,33 @@ import { Image } from "astro:assets";
         const image = document.querySelector('.divider-image') as HTMLElement;
         if (!image) return;
 
-        // Start de foto hoger (negatieve waarde)
-        const startOffset = -30; // Pas dit aan! Hogere waarde = foto begint hoger
-        const parallaxSpeed = 50; // Hoeveel de foto beweegt tijdens scrollen
+        const startOffset = -30;
 
         let ticking = false;
+
+        // Functie die parallax speed berekent op basis van viewport
+        const getParallaxSpeed = () => {
+            const width = window.innerWidth;
+            
+            // Onder 687px: 40
+            if (width < 687) return 40;
+            
+            // Tussen 687px en 1024px: scale van 40 naar 100
+            if (width < 1024) {
+                return 40 + ((width - 687) / (1024 - 687)) * (100 - 40);
+            }
+            
+            // Boven 1024px: 100
+            return 100;
+        };
 
         const updateParallax = () => {
             const rect = image.getBoundingClientRect();
             const windowHeight = window.innerHeight;
+            const parallaxSpeed = getParallaxSpeed();
             
             if (rect.top < windowHeight && rect.bottom > 0) {
-                // Bereken scroll progress (0 = net in beeld, 1 = bijna uit beeld)
                 const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
-                
-                // Start hoog (negatief) en beweeg naar beneden
                 const parallaxAmount = startOffset + (scrollProgress * parallaxSpeed);
                 
                 image.style.transform = `translateY(${parallaxAmount}px)`;

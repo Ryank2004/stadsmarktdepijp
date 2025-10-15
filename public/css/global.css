@@ -62,7 +62,7 @@ h5,
 h6 {
    font-family: "Sale", sans-serif;
    color: var(--color-primary);
-   /* letter-spacing: -5px; */
+   line-height: 110%;
    text-transform: uppercase;
 }
 
@@ -74,6 +74,17 @@ h1 {
 @media screen and (min-width: 540px) {
    h1 {
       font-size: clamp(74px, 11vw + .7rem, 12rem);
+   }
+
+}
+
+h2 {
+   font-size: 12.5vw;
+}
+
+@media screen and (min-width: 540px) {
+   h2 {
+      font-size: clamp(64px, 8vw + 1rem, 8rem);
    }
 
 }

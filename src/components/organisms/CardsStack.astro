@@ -1,0 +1,212 @@
+---
+import { Image } from "astro:assets";
+import landmarkt from "@images/landmarkt.webp";
+
+const cards = [
+    {
+        title: "Slagerij",
+        description: "In onze slagerij vind je vlees van topkwaliteit: runderen uit de wei van Palmesteyn, varkens met ruimte bij familie Van der Mark en Gildehoen-kippen die vrij scharrelen in Stompwijk. Onze slagers draaien dagelijks vers gehakt, snijden biefstuk en bereiden vleeswaren en lekkernijen die je meteen kunt proeven.",
+        color: "var(--color-primary)"
+    },
+    {
+        title: "Vishandel",
+        description: "Zo uit de zee, bij ons op het ijs! Tonijn, zalm, schol, dorade, makreel, kabeljauw, tong, tarbot, oesters, mosselen en veel garnalen. Is het niet vers, dan is het er niet. Onze visboeren kennen de vangst en staan voor kwaliteit.",
+        color: "#68a7f4"
+    },
+    {
+        title: "Huisgemaakt",
+        description: "Lekker zonder toeters en bellen. Naast de vaste prik, koken onze vrienden van Landmarkt met de seizoenen mee, elke dag een verrassing. Zo worden er simpele, lekkere en gezonde maaltijden vers bereid met de producten van de markt en van het land. Daar hoef je niks aan toe te voegen.",
+        color: "#d6d6d6"
+    },
+    {
+        title: "Bakkerij",
+        description: "Terwijl jij nog slaapt, vult onze bakker de ovens met geurend brood. Van campagne, (zuur)desem en spelt tot romige croissants: biologisch en met een vleugje Frans. Onze patissiers maken koekjes, taarten en macarons met fruit uit de regio, elke dag vers uit onze eigen ovens.",
+        color: "#b16e37"
+    },
+    {
+        title: "Kazerij",
+        description: "Kaas maken is ambacht. Met lokale makers voor ons Hollandse assortiment en aanvullingen uit Europa: van romige Brie tot pittige Roquefort. Schapen- en geitenkazen, witschimmels, roodschimmels en de juiste dippers maken je kaasplank compleet.",
+        color: "#f0d050"
+    },
+    {
+        title: "Groentekraam",
+        description: "Groenten nog nat van het land en vers fruit, direct van de boer. We werken samen met ruim 30 lokale boeren en telers die goed zorgen voor de kwaliteit van het product, het land en de dieren in de omgeving. Dagelijks rijden onze vrienden van Landmarkt zelf rond om de producten op te halen.",
+        color: "#41a338"
+    }
+];
+---
+
+<section class="cards-stack-section">
+    <h2>onz<span class="title-spacing">e</span><br /> versmarkt</h2>
+    <div class="scroll-cards">
+        {cards.map((card, index) => (
+            <article class="scroll-cards-item" style={`background: ${card.color};`}>
+                <div class="text-wrapper">
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                </div>
+                <div class="image-wrapper">
+                    <Image
+                        src={landmarkt}
+                        class="card-image"
+                        alt={card.title}
+                        width={1000}
+                        height={650}
+                    />
+                </div>
+            </article>
+        ))}
+    </div>
+</section>
+
+<style>
+    /* Section */
+    .cards-stack-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--color-dark);
+        text-align: center;
+    }
+
+    .cards-stack-section h2 {
+        color: var(--color-light);
+        padding: 16vw 0 10rem;
+    }
+
+    .title-spacing {
+        letter-spacing: 8px;
+    }
+
+    /* Cards container */
+    .scroll-cards {
+        position: relative;
+        padding-bottom: 400px;
+    }
+
+    /* Individual cards */
+    .scroll-cards-item {
+        position: sticky;
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: left;
+        margin-bottom: 30vh;
+        padding: 12px;
+        height: 520px;
+        width: 85vw;
+        max-width: 420px;
+        box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
+        border-radius: var(--border-radius-md);
+    }
+
+    /* Card positioning with calc() */
+    .scroll-cards-item:nth-of-type(1) { top: 25%; rotate: 3deg; }
+    .scroll-cards-item:nth-of-type(2) { top: 26%; rotate: 3.5deg; }
+    .scroll-cards-item:nth-of-type(3) { top: 27%; rotate: 4deg; }
+    .scroll-cards-item:nth-of-type(4) { top: 28%; rotate: 4.5deg; }
+    .scroll-cards-item:nth-of-type(5) { top: 29%; rotate: 5deg; }
+    .scroll-cards-item:nth-of-type(6) { top: 30%; rotate: 5.5deg; }
+
+    /* Text content */
+    .text-wrapper {
+        margin: 0 2vw;
+    }
+
+    .text-wrapper h3 {
+        color: var(--color-light);
+    }
+
+    .text-wrapper p {
+        color: var(--color-light);
+        font-size: 16px;
+        margin-top: 1rem;
+    }
+
+    /* Dark text for light background cards (3 & 5) */
+    .scroll-cards-item:nth-of-type(3) .text-wrapper h3,
+    .scroll-cards-item:nth-of-type(3) .text-wrapper p,
+    .scroll-cards-item:nth-of-type(5) .text-wrapper h3,
+    .scroll-cards-item:nth-of-type(5) .text-wrapper p {
+        color: var(--color-dark);
+    }
+
+    /* Image wrapper */
+    .image-wrapper {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        border-radius: var(--border-radius-sm);
+        overflow: hidden;
+    }
+
+    .card-image {
+        width: 100%;
+        height: auto;
+        min-height: 230px;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Tablet & Desktop */
+    @media screen and (min-width: 678px) {
+        .cards-stack-section {
+            text-align: left;
+        }
+
+        .cards-stack-section h2 {
+            padding: 10vw 0 20vw var(--container-padding-sm);
+            margin-right: auto;
+        }
+
+        .text-wrapper {
+            margin: auto 5%;
+        }
+
+        .text-wrapper p {
+            font-size: clamp(14px, 1.9vw + 0.2rem, 1.8rem);
+        }
+
+        .image-wrapper {
+            min-width: 45%;
+            border-radius: var(--border-radius-md);
+        }
+
+        .card-image {
+            height: 100%;
+        }
+
+        .scroll-cards-item {
+            flex-direction: row;
+            padding: 24px;
+            height: 400px;
+            width: 90vw;
+            max-width: 1400px;
+            border-radius: var(--border-radius-lg);
+        }
+    }
+
+    /* Desktop optimizations */
+    @media screen and (min-width: 1024px) {
+        .cards-stack-section h2 {
+            padding: 10vw 0 10vw var(--container-padding-sm);
+        }
+
+        .scroll-cards-item {
+            top: calc(150px + min(4vw, 64px) * 2);
+            margin-top: min(4vw, 64px);
+            height: 480px;
+        }
+    }
+
+    @media screen and (min-width: 1224px) {
+        .scroll-cards-item {
+            height: 540px;
+        }
+    }
+
+    @media screen and (min-width: 1424px) {
+        .scroll-cards-item {
+            width: 85vw;
+        }
+    }
+</style>
