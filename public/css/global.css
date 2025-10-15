@@ -100,7 +100,8 @@ h3 {
 }
 
 p {
-   line-height: 120%;
+   line-height: 115%;
+   letter-spacing: -1px;
    color: var(--text-color);
    font-size: clamp(14px, 2vw + .2rem, 1.8rem);
    font-family: "Work Sans", sans-serif;
