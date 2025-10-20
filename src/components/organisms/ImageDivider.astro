@@ -89,13 +89,12 @@ import landmarkt from "@images/landmarkt.webp";
         // Functie die parallax speed berekent op basis van viewport
         const getParallaxSpeed = () => {
             const width = window.innerWidth;
-            
-            // Onder 687px: 40
-            if (width < 687) return 40;
+            // Onder 687px: 70
+            if (width < 687) return 70;
             
             // Tussen 687px en 1024px: scale van 40 naar 100
             if (width < 1024) {
-                return 40 + ((width - 687) / (1024 - 687)) * (100 - 40);
+                return 70 + ((width - 687) / (1024 - 687)) * (100 - 70);
             }
             
             // Boven 1024px: 100
