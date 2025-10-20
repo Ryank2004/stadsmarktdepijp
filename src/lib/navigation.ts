@@ -1,5 +1,5 @@
 export function initNavigation() {
-  // Hamburger menu functionaliteit
+  // --- Hamburger menu functionaliteit ---
   const hamburger = document.querySelector("[data-navigation-toggle]");
   const overlay = document.getElementById("menu-overlay");
   const closeBtn = document.getElementById("menu-close");
@@ -23,19 +23,33 @@ export function initNavigation() {
     });
   }
 
-  // Nav pinnen bij scrollen
+  // --- Nav pin/unpin gedrag ---
   const nav = document.querySelector(".main-nav");
   if (!nav) return;
 
   const SCROLL_THRESHOLD = 200;
+  let lastScrollY = window.scrollY;
+  let isPinned = false;
 
   const onScroll = () => {
-    nav.classList.toggle(
-      "main-nav--pinned",
-      window.scrollY > SCROLL_THRESHOLD,
-    );
+    const currentScrollY = window.scrollY;
+    const scrollingDown = currentScrollY > lastScrollY;
+    const scrollingUp = currentScrollY < lastScrollY;
+
+    // Pinnen bij scroll omlaag voorbij drempel
+    if (scrollingDown && currentScrollY > SCROLL_THRESHOLD && !isPinned) {
+      nav.classList.add("main-nav--pinned");
+      isPinned = true;
+    }
+
+    // Unpinnen zodra gebruiker omhoog scrollt (ongeacht positie)
+    if (scrollingUp && isPinned) {
+      nav.classList.remove("main-nav--pinned");
+      isPinned = false;
+    }
+
+    lastScrollY = currentScrollY;
   };
 
-  onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 }
