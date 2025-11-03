@@ -1,6 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import landmarkt from "@images/landmarkt.webp";
+import slagerij from "@images/slagerij.webp";
+import groentekraam from "@images/groentekraam.webp";
+import huisgemaakt from "@images/huisgemaakt.webp";
+import bakkerij from "@images/bakkerij.webp";
+import kazerij from "@images/kaasafdeling.webp";
 
 const cards = [
     {
@@ -8,36 +13,42 @@ const cards = [
         description:
             "In onze slagerij vind je vlees van topkwaliteit: runderen uit de wei van Palmesteyn, varkens met ruimte bij familie Van der Mark en Gildehoen-kippen die vrij scharrelen in Stompwijk. Onze slagers draaien dagelijks vers gehakt, snijden biefstuk en bereiden vleeswaren en lekkernijen die je meteen kunt proeven.",
         color: "var(--color-primary)",
+        image: slagerij,
     },
     {
         title: "Vishandel",
         description:
             "Zo uit de zee, bij ons op het ijs! Tonijn, zalm, schol, dorade, makreel, kabeljauw, tong, tarbot, oesters, mosselen en veel garnalen. Is het niet vers, dan is het er niet. Onze visboeren kennen de vangst en staan voor kwaliteit.",
         color: "#68a7f4",
+        image: landmarkt,
     },
     {
         title: "Huisgemaakt",
         description:
             "Lekker zonder toeters en bellen. Naast de vaste prik, koken onze vrienden van Landmarkt met de seizoenen mee, elke dag een verrassing. Zo worden er simpele, lekkere en gezonde maaltijden vers bereid met de producten van de markt en van het land. Daar hoef je niks aan toe te voegen.",
         color: "#d6d6d6",
+        image: huisgemaakt,
     },
     {
         title: "Bakkerij",
         description:
             "Terwijl jij nog slaapt, vult onze bakker de ovens met geurend brood. Van campagne, (zuur)desem en spelt tot romige croissants: biologisch en met een vleugje Frans. Onze patissiers maken koekjes, taarten en macarons met fruit uit de regio, elke dag vers uit onze eigen ovens.",
         color: "#b16e37",
+        image: bakkerij,
     },
     {
         title: "Kazerij",
         description:
             "Kaas maken is ambacht. Met lokale makers voor ons Hollandse assortiment en aanvullingen uit Europa: van romige Brie tot pittige Roquefort. Schapen- en geitenkazen, witschimmels, roodschimmels en de juiste dippers maken je kaasplank compleet.",
         color: "#f0d050",
+        image: kazerij,
     },
     {
         title: "Groentekraam",
         description:
             "Groenten nog nat van het land en vers fruit, direct van de boer. We werken samen met ruim 30 lokale boeren en telers die goed zorgen voor de kwaliteit van het product, het land en de dieren in de omgeving. Dagelijks rijden onze vrienden van Landmarkt zelf rond om de producten op te halen.",
         color: "#41a338",
+        image: groentekraam,
     },
 ];
 ---
@@ -57,7 +68,7 @@ const cards = [
                     </div>
                     <div class="image-wrapper">
                         <Image
-                            src={landmarkt}
+                            src={card.image}
                             class="card-image"
                             alt={card.title}
                             width={1000}

@@ -1,6 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import landmarkt from "@images/landmarkt.webp";
+import wijn from "@images/wijn.webp";
+import kaaswielen from "@images/kaaswielen.webp";
+import groente from "@images/groente.webp";
+import snijden from "@images/snijden.webp";
+import cinnamonroll from "@images/cinnamon-roll.webp";
+import vlag from "@images/vlag.webp";
 ---
 <section class="marquees">
 <div class="marquee-text-wrapper">
@@ -13,7 +18,7 @@ import landmarkt from "@images/landmarkt.webp";
     <div class="marquee-image">
         <div class="image-group">
             <Image
-                src={landmarkt}
+                src={wijn}
                 alt="Slider Image 1"
                 class="image"
                 width={800}
@@ -21,7 +26,7 @@ import landmarkt from "@images/landmarkt.webp";
                 loading="eager"
             />
             <Image
-                src={landmarkt}
+                src={groente}
                 alt="Slider Image 1"
                 class="image"
                 width={800}
@@ -29,7 +34,7 @@ import landmarkt from "@images/landmarkt.webp";
                 loading="eager"
             />
             <Image
-                src={landmarkt}
+                src={vlag}
                 alt="Slider Image 1"
                 class="image"
                 width={800}
@@ -37,7 +42,7 @@ import landmarkt from "@images/landmarkt.webp";
                 loading="eager"
             />
             <Image
-                src={landmarkt}
+                src={kaaswielen}
                 alt="Slider Image 1"
                 class="image"
                 width={800}
@@ -45,7 +50,7 @@ import landmarkt from "@images/landmarkt.webp";
                 loading="eager"
             />
             <Image
-                src={landmarkt}
+                src={snijden}
                 alt="Slider Image 1"
                 class="image"
                 width={800}
@@ -53,7 +58,7 @@ import landmarkt from "@images/landmarkt.webp";
                 loading="eager"
             />
             <Image
-                src={landmarkt}
+                src={cinnamonroll}
                 alt="Slider Image 1"
                 class="image"
                 width={800}
@@ -85,6 +90,7 @@ import landmarkt from "@images/landmarkt.webp";
         white-space: nowrap;
         padding-top: 6vh;
         padding-bottom: 20vh;
+        transform: translateX(-20%);
     }
 
     .marquee-image {
