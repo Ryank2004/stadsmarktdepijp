@@ -16,6 +16,11 @@
    font-display: swap;
 }
 
+@font-face {
+   font-family: "Sale-bold";
+   src: url(/fonts/sale-italic-bold.ttf);
+   font-display: swap;
+}
 :root {
    /* Colors */
    --color-primary: #E6452D;
@@ -45,7 +50,7 @@
    --animation-bounce: 0.4s cubic-bezier(0.33, 1.7, 0.55, 1);
 
    /* Typography (nieuw) */
-   font-family: Inter, sans-serif;
+   font-family: "Inter", sans-serif;
    --font-heading: "Sale", sans-serif;
    --font-body: "Work Sans", sans-serif;
 }
@@ -60,14 +65,15 @@ h3,
 h4,
 h5,
 h6 {
-   font-family: "Sale", sans-serif;
+   font-family: "Sale-bold", sans-serif;
    color: var(--color-primary);
    line-height: 110%;
    text-transform: uppercase;
+   /* font-weight: 900; */
 }
 
 h1 {
-   font-size: 13.7vw;
+   font-size: 13.25vw;
    white-space: nowrap;
 }
 
@@ -90,12 +96,22 @@ h2 {
 }
 
 h3 {
-   font-size: min(7.8vw, 40px);
+   font-size: min(7.8vw, 38px);
 }
 
 @media screen and (min-width: 1024px) {
    h3 {
-      font-size: min(4vw, 64px);
+      font-size: min(4vw, 58px);
+   }
+}
+
+h4 {
+   font-size: min(6vw, 32px);
+}
+
+@media screen and (min-width: 1024px) {
+   h4 {
+      font-size: min(3.4vw, 48px);
    }
 }
 
@@ -103,7 +119,7 @@ p {
    line-height: 115%;
    letter-spacing: -1px;
    color: var(--text-color);
-   font-size: clamp(14px, 2vw + .2rem, 1.8rem);
+   font-size: clamp(18px, 2vw + .2rem, 1.8rem);
    font-family: "Work Sans", sans-serif;
 }
 
