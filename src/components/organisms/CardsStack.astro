@@ -7,6 +7,10 @@ import huisgemaakt from "@images/huisgemaakt.webp";
 import bakkerij from "@images/bakkerij.webp";
 import kazerij from "@images/kaasafdeling.webp";
 
+interface Props {
+  title: ".cards-stack-section h2";
+}
+
 const cards = [
     {
         title: "Slagerij",
@@ -95,6 +99,7 @@ const cards = [
     .cards-stack-section h2 {
         color: var(--color-light);
         padding: 16vw 0 10rem;
+        text-wrap: wrap;
     }
 
     .title-spacing {
@@ -197,7 +202,7 @@ const cards = [
 
         .cards-stack-section h2 {
             padding: 10vw 0 20vw var(--container-padding-sm);
-            margin-right: auto;
+            /* margin-right: auto; */
         }
 
         .text-wrapper {
@@ -261,7 +266,7 @@ const cards = [
         }
 
         .cards-stack-section h2 {
-            padding: 10vw 0 10vw var(--container-padding-sm);
+            padding: 10vw 20vw 10vw var(--container-padding-sm);
         }
 
         .scroll-cards-item {
@@ -283,3 +288,5 @@ const cards = [
         }
     }
 </style>
+
+<script src="/src/scripts/title-animation.js"></script>
