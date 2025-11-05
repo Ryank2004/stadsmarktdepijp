@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+gsap.matchMedia().add("(min-width: 768px)", () => {
 gsap.to(".marquee-text-wrapper", {
     translateX: "-20vw",
     ease: "none",
@@ -22,6 +23,8 @@ gsap.to(".marquee-image-wrapper", {
         scrub: true,
     },
 })
+});
+
 let direction = 1; // 1 = forward, -1 = backward scroll
 
 const roll1 = roll(".marquee-text", { duration: 25 }),

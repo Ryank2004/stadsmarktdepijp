@@ -12,10 +12,10 @@ import Navigation from "@organisms/Navigation.astro";
         <meta name="generator" content={Astro.generator} />
         <title>Astro</title>
         <link rel="stylesheet" href="/css/global.css" />
-        <link
+        <!-- <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
+        /> -->
         <link
             rel="preload"
             href="/fonts/work-sans.woff2"
@@ -28,6 +28,13 @@ import Navigation from "@organisms/Navigation.astro";
             href="/fonts/sale-italic.woff2"
             as="font"
             type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/fonts/sale-italic-bold.ttf"
+            as="font"
+            type="font/ttf"
             crossorigin
         />
     </head>
