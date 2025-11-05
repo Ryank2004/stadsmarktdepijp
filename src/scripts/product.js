@@ -5,13 +5,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Zoom out effect tijdens scrollen
 gsap.to(".section-image", {
-    scale: 1, // Gaat van 1.15 (CSS) naar 1
+    scale: 1.08,
     ease: "none",
     scrollTrigger: {
         trigger: ".image-container",
         start: "top bottom", // Start wanneer de image in beeld komt
-        end: "center center", // Eindigt wanneer de image gecentreerd is
+        end: "40% center", // Eindigt wanneer de image gecentreerd is
         scrub: 1,
+        // markers: true,
     }
 });
 
