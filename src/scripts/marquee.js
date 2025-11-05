@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.matchMedia().add("(min-width: 768px)", () => {
+gsap.matchMedia().add("(min-width: 568px)", () => {
 gsap.to(".marquee-text-wrapper", {
     translateX: "-20vw",
     ease: "none",
