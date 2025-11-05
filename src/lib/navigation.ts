@@ -1,22 +1,6 @@
-export function initNavigation(): void {
-  // --- Fix voor Chrome safe-area / adresbalk ---
-  const nav = document.querySelector<HTMLElement>(".main-nav");
-
-  if (nav && "visualViewport" in window) {
-    const updateNavOffset = (): void => {
-      const offset = window.visualViewport?.offsetTop ?? 0;
-      nav.style.top = `${offset}px`;
-    };
-
-    updateNavOffset();
-
-    const vv = window.visualViewport as VisualViewport;
-    vv.addEventListener("resize", updateNavOffset);
-    vv.addEventListener("scroll", updateNavOffset);
-  }
-
+export function initNavigation() {
   // --- Hamburger menu functionaliteit ---
-  const hamburger = document.querySelector<HTMLElement>("[data-navigation-toggle]");
+  const hamburger = document.querySelector("[data-navigation-toggle]");
   const overlay = document.getElementById("menu-overlay");
   const closeBtn = document.getElementById("menu-close");
 
@@ -31,7 +15,7 @@ export function initNavigation(): void {
       document.body.style.overflow = "";
     });
 
-    overlay.addEventListener("click", (e: MouseEvent) => {
+    overlay.addEventListener("click", (e) => {
       if (e.target === overlay) {
         overlay.classList.remove("active");
         document.body.style.overflow = "";
@@ -40,22 +24,25 @@ export function initNavigation(): void {
   }
 
   // --- Nav pin/unpin gedrag ---
+  const nav = document.querySelector(".main-nav");
   if (!nav) return;
 
   const SCROLL_THRESHOLD = 200;
   let lastScrollY = window.scrollY;
   let isPinned = false;
 
-  const onScroll = (): void => {
+  const onScroll = () => {
     const currentScrollY = window.scrollY;
     const scrollingDown = currentScrollY > lastScrollY;
     const scrollingUp = currentScrollY < lastScrollY;
 
+    // Pinnen bij scroll omlaag voorbij drempel
     if (scrollingDown && currentScrollY > SCROLL_THRESHOLD && !isPinned) {
       nav.classList.add("main-nav--pinned");
       isPinned = true;
     }
 
+    // Unpinnen zodra gebruiker omhoog scrollt (ongeacht positie)
     if (scrollingUp && isPinned) {
       nav.classList.remove("main-nav--pinned");
       isPinned = false;

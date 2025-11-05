@@ -202,14 +202,14 @@ import logo from "@images/logo.svg";
 
 <style>
     .main-nav {
-        position: fixed;
+        position: sticky;
         display: flex; /* Flexbox in plaats van Grid! */
         justify-content: space-between; /* Menu links, button rechts */
         align-items: center; /* Alles verticaal centreren */
         height: 80px;
         background-color: var(--color-light);
         pointer-events: all;
-        top: 0;
+        top: env(safe-area-inset-top, 0);
         left: 0;
         width: 100%;
         z-index: 10;
