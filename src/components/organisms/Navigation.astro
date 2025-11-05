@@ -202,7 +202,7 @@ import logo from "@images/logo.svg";
 
 <style>
     .main-nav {
-        position: sticky;
+        position: fixed;
         display: flex; /* Flexbox in plaats van Grid! */
         justify-content: space-between; /* Menu links, button rechts */
         align-items: center; /* Alles verticaal centreren */
@@ -210,6 +210,7 @@ import logo from "@images/logo.svg";
         background-color: var(--color-light);
         pointer-events: all;
         top: env(safe-area-inset-top, 0);
+        z-index: 1000;
         left: 0;
         width: 100%;
         z-index: 10;
