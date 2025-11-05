@@ -30,6 +30,7 @@ export function initNavigation() {
   const SCROLL_THRESHOLD = 200;
   let lastScrollY = window.scrollY;
   let isPinned = false;
+  let ticking = false;
 
   const onScroll = () => {
     const currentScrollY = window.scrollY;
@@ -48,8 +49,28 @@ export function initNavigation() {
       isPinned = false;
     }
 
+    // Chrome mobiel fix - force repositioning
+    (nav as HTMLElement).style.top = '0px';
+
     lastScrollY = currentScrollY;
+    ticking = false;
   };
 
-  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Extra fixes voor Chrome mobiel
+  window.addEventListener("resize", () => {
+    (nav as HTMLElement).style.top = '0px';
+  }, { passive: true });
+
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      (nav as HTMLElement).style.top = '0px';
+    }, 100);
+  });
 }
