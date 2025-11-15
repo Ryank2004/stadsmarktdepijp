@@ -4,14 +4,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // Zoom out effect tijdens scrollen
-gsap.to(".section-image", {
-    scale: 1.08,
+gsap.to(".product-image", {
+    scale: 1.1,
     ease: "none",
     scrollTrigger: {
-        trigger: ".image-container",
+        trigger: ".product-image-wrapper",
         start: "top bottom", // Start wanneer de image in beeld komt
-        end: "40% center", // Eindigt wanneer de image gecentreerd is
+        end: "20% 70%", // Eindigt wanneer de image gecentreerd is
         scrub: 1,
+        onLeave: self => self.kill(false, true),
         // markers: true,
     }
 });

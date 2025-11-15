@@ -22,10 +22,11 @@ gsap.matchMedia().add("(min-width: 940px)", () => {
                 start: "20% 85%",
                 end: "90% 85%",
                 scrub: true,
+                onLeave: self => self.kill(false, true),
                 // markers: true,
             },
             color: "var(--color-dark)",
-            stagger: 1,
+            stagger: .1,
             duration: 1,
         });
     });
