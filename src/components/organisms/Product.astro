@@ -1,29 +1,33 @@
 ---
 import { Image } from "astro:assets";
-import tomasu from "@images/tomasu-wide.webp";
+import tomasuBlob from "@images/tomasu-blob.webp";
 ---
 
 <section class="product-section">
     <h2>Nu in de spotlight!</h2>
-    <div class="image-section">
-        <div class="image-container">
+
+    <div class="product-inner">
+        <div class="product-image-wrapper">
             <Image
-                src={tomasu}
-                alt="Landmarkt"
-                class="section-image"
+                src={tomasuBlob}
+                alt="Chili Sojasaus van Tomasu"
+                class="product-image"
                 width={800}
-                height={600}
+                height={1000}
+                loading="lazy"
             />
         </div>
-        <div class="content">
-            <h3 class="title">Chili Sojasaus</h3>
+
+        <div class="product-content">
+            <h3 class="title">De Sojasaus</h3>
             <h4 class="subtitle">Van Tomasu</h4>
             <p class="text">
-                Elke week brengen lokale boeren en producenten hun verse waar
-                naar de markt. Van knapperige groenten tot ambachtelijk gebakken
-                brood, alles komt rechtstreeks uit de buurt. Ontdek de smaak van
-                seizoensproducten en ondersteun tegelijkertijd onze lokale
-                gemeenschap.
+                Vanuit hartje Rotterdam brouwt Tomasu de enige Europese sojasaus
+                met liefde, tijd en echt vakmanschap. Lokale sojabonen, tarwe en
+                bronwater rijpen meer dan twee jaar in oude whiskyvaten tot een
+                saus met een volle, rijke smaak. Elke druppel vertelt het
+                verhaal van Rotterdams lef en ambacht. Proef het verschil en
+                ontdek hoe lokaal bijzonder kan smaken.
             </p>
             <p class="additional-info">Nu verkrijgbaar in onze winkel!</p>
         </div>
@@ -32,140 +36,125 @@ import tomasu from "@images/tomasu-wide.webp";
 
 <style>
     .product-section {
-        margin: 0 auto;
         background-color: var(--color-dark);
         border-radius: var(--border-radius-md);
-    }
-
-    .image-section {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        gap: 2rem;
-        padding: 0 var(--container-padding-sm) 4rem;
+        margin: 0 auto;
     }
 
     .product-section h2 {
         text-align: center;
         color: var(--color-light);
-        padding: 24vw 0 4rem;
+        padding: 24vw 0 2rem;
     }
 
-    .image-container {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        border-radius: var(--border-radius-sm, 8px);
-    }
-
-    .section-image {
-        width: 100%;
-        height: auto;
-        border-radius: var(--border-radius-sm, 8px);
-        object-fit: cover;
-        aspect-ratio: 4 / 3;
-        transform: scale(1); /* Start iets ingezoomd */
-    }
-
-    .decorative-svg {
-        position: absolute;
-        top: -90px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        height: auto;
-        color: var(--color-primary, #4caf50);
-        pointer-events: none;
-    }
-
-    .content {
+    .product-inner {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-lg);
+    }
+
+    .product-image-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-image {
+        width: 90%;
+        height: auto;
+        max-width: 500px;
+        /* object-fit: contain; */
+    }
+
+    .product-content {
+        display: flex;
+        flex-direction: column;
+        padding: 0 var(--container-padding-md) 4rem;
+        max-width: 450px;
     }
 
     .title {
+        font-size: min(10vw, 44px);
+    }
+
+    .title,
+    .subtitle,
+    .text,
+    .additional-info {
         color: var(--color-light);
     }
 
     .subtitle {
-        color: var(--color-light);
-        padding-bottom: 1rem;
-    }
-
-    .text {
-        color: var(--color-light);
+        padding-bottom: var(--spacing-md);
     }
 
     .additional-info {
-        color: var(--color-light);
-        padding-top: 1rem;
+        padding-top: var(--spacing-md);
         font-weight: bold;
         display: inline-block;
-        width: fit-content;
         border-bottom: 1px solid var(--color-light);
+        width: fit-content;
     }
 
     @media screen and (min-width: 568px) {
-        .image-section {
-            border-radius: var(--border-radius-md, 12px);
+        .product-section h2 {
+            padding: 10vw 0 4rem var(--container-padding-sm);
+        }
+
+        .product-inner {
             padding: 0 var(--container-padding-md) 6rem;
         }
-        
-        .image-container {
-            border-radius: var(--border-radius-md, 12px);
+
+        .product-content {
+            padding: 2rem 0 0;
         }
-        
-        .section-image {
-            border-radius: var(--border-radius-md, 12px);
+
+        .product-image-wrapper,
+        .product-image {
+            border-radius: var(--border-radius-md);
         }
     }
-    @media screen and (min-width: 768px) {
+
+    @media screen and (min-width: 868px) {
         .product-section h2 {
-            text-align: center;
-            padding: 14vw 0 8rem var(--container-padding-sm);
+            padding: 10vw 0 6rem;
         }
 
-        .image-section {
+        .product-inner {
             flex-direction: row;
             gap: 3rem;
-            padding-bottom: 12rem;
-            padding: 0 var(--container-padding-lg) 8rem;
+            padding: 0 var(--container-padding-lg) 12rem;
         }
 
-        .image-container {
-            flex: 1;
-            min-width: 0;
-            border-radius: var(--border-radius-md, 12px);
+        .product-image {
+            width: auto;
+            height: 45vh;
+            max-width: none;
         }
 
-        .content {
-            flex: 1;
-            min-width: 0;
+        .product-content {
+            width: 100%;
+            max-width: none;
         }
 
         .subtitle {
             padding-bottom: 1.5rem;
         }
-
-        .section-image {
-            border-radius: var(--border-radius-md, 12px);
-            aspect-ratio: 4 / 5;
-        }
     }
 
     @media screen and (min-width: 1024px) {
         .product-section {
-            gap: 4rem;
             border-radius: var(--border-radius-lg);
         }
 
         .product-section h2 {
             text-align: left;
-            padding: 14vw 0 12rem var(--container-padding-sm);
+            padding: 14vw 0 8rem var(--container-padding-sm);
         }
 
-        .section-image {
-            border-radius: var(--border-radius-md, 12px);
+        .title {
+            font-size: min(6vw, 64px);
         }
 
         .subtitle {
@@ -178,11 +167,15 @@ import tomasu from "@images/tomasu-wide.webp";
     }
 
     @media screen and (min-width: 1224px) {
-        .section-image {
-            aspect-ratio: 5 / 4;
+        /* .product-inner {
+            align-items: center;
+        } */
+
+        .product-image {
+            height: 75vh;
         }
     }
 </style>
 
-<script src="/src/scripts/product.js"></script>
+<!-- <script src="/src/scripts/product.js"></script> -->
 <script src="/src/scripts/title-animation.js"></script>

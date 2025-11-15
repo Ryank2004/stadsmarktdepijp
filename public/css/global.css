@@ -57,6 +57,7 @@
 
 body {
    background-color: var(--color-light);
+   overflow-x: hidden;
 }
 
 h1,
