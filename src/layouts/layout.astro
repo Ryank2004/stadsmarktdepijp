@@ -1,6 +1,7 @@
 ---
 import BackgroundTexture from "@atoms/BackgroundTexture.astro";
 import CustomCursor from "@molecules/CustomCursor.astro";
+import Footer from "@organisms/Footer.astro";
 import Navigation from "@organisms/Navigation.astro";
 ---
 
@@ -43,6 +44,7 @@ import Navigation from "@organisms/Navigation.astro";
         <BackgroundTexture />
         <Navigation />
         <slot />
+        <Footer />
     </body>
     <script>
         import "../scripts/smooth-scroll";
