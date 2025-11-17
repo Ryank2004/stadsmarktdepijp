@@ -11,7 +11,8 @@
       "@layout/*": ["src/layouts/*"],
       "@data/*": ["src/data/*"],
       "@lib/*": ["src/lib/*"],
-      "@images/*": ["src/assets/images/*"]
+      "@images/*": ["src/assets/images/*"],
+      "@videos/*": ["src/assets/videos/*"],
     }
   }
 }
