@@ -11,6 +11,6 @@ gsap.to(".product-image", {
     scrollTrigger: {
         trigger: ".product-image-wrapper",
         start: "30% bottom",
-        markers: true,
+        // markers: true,
     }
 });

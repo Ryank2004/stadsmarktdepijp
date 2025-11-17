@@ -1,6 +1,6 @@
 ---
-import { Image } from "astro:assets";
-import landmarkt from "@images/landmarkt.webp";
+import promo from "@videos/stadsmarkt-promo.mp4";
+import posterImage from "@images/winkel-zijkant.webp";
 ---
 
 <section class="hero">
@@ -8,7 +8,9 @@ import landmarkt from "@images/landmarkt.webp";
         Vers <span class="title-spacing">v</span>an ‘t
     </h1>
     <div class="header-image">
-        <Image src={landmarkt} alt="Hero Image" width={2000} height={1300} />
+        <video autoplay muted loop playsinline preload="none" poster={posterImage.src}>
+            <source src={promo} type="video/mp4" />
+        </video>
 
         <div class="h1-box">
             <h1 class="big-title line-2">Land!</h1>
@@ -20,7 +22,8 @@ import landmarkt from "@images/landmarkt.webp";
 
 <style>
     .hero {
-        padding: 9rem var(--container-padding-md) 2rem var(--container-padding-md);
+        padding: 9rem var(--container-padding-md) 2rem
+            var(--container-padding-md);
     }
 
     .hero .line-1,
@@ -48,10 +51,10 @@ import landmarkt from "@images/landmarkt.webp";
         height: auto;
     }
 
-    .header-image img {
+    .header-image video {
         width: 100%;
         height: auto;
-        aspect-ratio: 7 / 8;
+        /* aspect-ratio: 7 / 8; */
         border-radius: 25px;
         position: relative;
         object-fit: cover;
@@ -113,7 +116,7 @@ import landmarkt from "@images/landmarkt.webp";
             padding: 0 var(--container-padding-lg) 0 2vw;
         }
 
-        .header-image img {
+        .header-image video {
             height: 50vh;
             border-radius: var(--border-radius);
         }
@@ -155,7 +158,7 @@ import landmarkt from "@images/landmarkt.webp";
                 var(--container-padding-sm);
         }
 
-        .header-image img {
+        .header-image video {
             height: 70vh;
         }
     }
@@ -166,7 +169,7 @@ import landmarkt from "@images/landmarkt.webp";
                 var(--container-padding-sm);
         }
 
-        .header-image img {
+        .header-image video {
             height: 80vh;
         }
     }
