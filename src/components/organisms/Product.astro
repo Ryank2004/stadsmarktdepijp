@@ -1,6 +1,18 @@
 ---
-import { Image } from "astro:assets";
-import tomasuBlob from "@images/tomasu-blob.webp";
+import { getProductVanDeMaand } from "@lib/contentful.js";
+import type { Document } from "@contentful/rich-text-types";
+import type { Asset } from "contentful";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+const product = await getProductVanDeMaand();
+
+const descriptionHtml = product.beschrijvingProduct
+    ? documentToHtmlString(product.beschrijvingProduct as Document)
+    : "";
+
+const imageUrl = (product.fotoProduct as Asset)?.fields?.file?.url;
+const productNaam = product.productNaam as string;
+const bedrijfProduct = product.bedrijfProduct as string;
 ---
 
 <section class="product-section">
@@ -8,27 +20,20 @@ import tomasuBlob from "@images/tomasu-blob.webp";
 
     <div class="product-inner">
         <div class="product-image-wrapper">
-            <Image
-                src={tomasuBlob}
-                alt="Chili Sojasaus van Tomasu"
+            <img
+                src={imageUrl ? `https:${imageUrl}` : ""}
+                alt={productNaam}
                 class="product-image"
-                width={800}
-                height={1000}
+                width="800"
+                height="1000"
                 loading="lazy"
             />
         </div>
 
         <div class="product-content">
-            <h3 class="title">De Sojasaus</h3>
-            <h4 class="subtitle">Van Tomasu</h4>
-            <p class="text">
-                Vanuit hartje Rotterdam brouwt Tomasu de enige Europese sojasaus
-                met liefde, tijd en echt vakmanschap. Lokale sojabonen, tarwe en
-                bronwater rijpen meer dan twee jaar in oude whiskyvaten tot een
-                saus met een volle, rijke smaak. Elke druppel vertelt het
-                verhaal van Rotterdams lef en ambacht. Proef het verschil en
-                ontdek hoe lokaal bijzonder kan smaken.
-            </p>
+            <h3 class="title">{productNaam}</h3>
+            <h4 class="subtitle">{bedrijfProduct}</h4>
+            <div class="text" set:html={descriptionHtml} />
             <p class="additional-info">Nu verkrijgbaar in onze winkel!</p>
         </div>
     </div>
@@ -64,7 +69,14 @@ import tomasuBlob from "@images/tomasu-blob.webp";
         width: 90%;
         height: auto;
         max-width: 500px;
-        /* object-fit: contain; */
+        transition: transform 0.4s ease;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .product-image:hover {
+            transform: scale(1.08);
+            cursor: pointer;
+        }
     }
 
     .product-content {
@@ -87,6 +99,10 @@ import tomasuBlob from "@images/tomasu-blob.webp";
 
     .subtitle {
         padding-bottom: var(--spacing-md);
+    }
+
+    .text :global(*) {
+        color: var(--color-light);
     }
 
     .additional-info {
@@ -167,15 +183,10 @@ import tomasuBlob from "@images/tomasu-blob.webp";
     }
 
     @media screen and (min-width: 1224px) {
-        /* .product-inner {
-            align-items: center;
-        } */
-
         .product-image {
             height: 75vh;
         }
     }
 </style>
 
-<script src="/src/scripts/product.js"></script>
 <script src="/src/scripts/title-animation.js"></script>

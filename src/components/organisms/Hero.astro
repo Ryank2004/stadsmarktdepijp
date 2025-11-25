@@ -1,5 +1,4 @@
 ---
-import promo from "@videos/stadsmarkt-promo.mp4";
 import posterImage from "@images/winkel-zijkant.webp";
 ---
 
@@ -9,7 +8,7 @@ import posterImage from "@images/winkel-zijkant.webp";
     </h1>
     <div class="header-image">
         <video autoplay muted loop playsinline preload="none" poster={posterImage.src}>
-            <source src={promo} type="video/mp4" />
+            <source src=https://pub-1a25cf202b82430c9160c7cbb02d619e.r2.dev/SDP%20promo.mp4 type="video/mp4" />
         </video>
 
         <div class="h1-box">
@@ -54,7 +53,7 @@ import posterImage from "@images/winkel-zijkant.webp";
     .header-image video {
         width: 100%;
         height: auto;
-        /* aspect-ratio: 7 / 8; */
+        aspect-ratio: 7 / 8;
         border-radius: 25px;
         position: relative;
         object-fit: cover;

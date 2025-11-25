@@ -1,14 +1,14 @@
 ---
 import { Image } from "astro:assets";
-import landmarkt from "@images/landmarkt.webp";
+import visafdeling from "@images/visafdeling.webp";
 import slagerij from "@images/slagerij.webp";
-import groentekraam from "@images/groentekraam.webp";
+import groentekraam from "@images/groente-2.webp";
 import huisgemaakt from "@images/huisgemaakt.webp";
 import bakkerij from "@images/bakkerij.webp";
 import kazerij from "@images/kaasafdeling.webp";
 
 interface Props {
-  title: ".cards-stack-section h2";
+    title: ".cards-stack-section h2";
 }
 
 const cards = [
@@ -24,10 +24,10 @@ const cards = [
         description:
             "Zo uit de zee, bij ons op het ijs! Tonijn, zalm, schol, dorade, makreel, kabeljauw, tong, tarbot, oesters, mosselen en veel garnalen. Is het niet vers, dan is het er niet. Onze visboeren kennen de vangst en staan voor kwaliteit.",
         color: "#68a7f4",
-        image: landmarkt,
+        image: visafdeling,
     },
     {
-        title: "Huisgemaakt",
+        title: "Huis gemaakt",
         description:
             "Lekker zonder toeters en bellen. Naast de vaste prik, koken onze vrienden van Landmarkt met de seizoenen mee, elke dag een verrassing. Zo worden er simpele, lekkere en gezonde maaltijden vers bereid met de producten van de markt en van het land. Daar hoef je niks aan toe te voegen.",
         color: "#d6d6d6",
@@ -48,7 +48,7 @@ const cards = [
         image: kazerij,
     },
     {
-        title: "Groentekraam",
+        title: "Groente kraam",
         description:
             "Groenten nog nat van het land en vers fruit, direct van de boer. We werken samen met ruim 30 lokale boeren en telers die goed zorgen voor de kwaliteit van het product, het land en de dieren in de omgeving. Dagelijks rijden onze vrienden van Landmarkt zelf rond om de producten op te halen.",
         color: "#41a338",
@@ -207,16 +207,16 @@ const cards = [
         }
 
         .text-wrapper {
-            margin: auto 5%;
+            margin: auto 3% auto 5%;
         }
 
         .text-wrapper p {
-            font-size: clamp(14px, 1.8vw + 0.2rem, 1.8rem);
+            font-size: clamp(14px, 1.5vw + 0.2rem, 1.6rem);
             /* line-height: 1; */
         }
 
         .image-wrapper {
-            min-width: 45%;
+            min-width: 58%;
             border-radius: var(--border-radius-md);
         }
 
@@ -280,6 +280,11 @@ const cards = [
     @media screen and (min-width: 1224px) {
         .scroll-cards-item {
             height: 540px;
+        }
+
+        .image-wrapper {
+            min-width: 58%;
+            border-radius: var(--border-radius-md);
         }
     }
 
