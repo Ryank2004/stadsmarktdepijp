@@ -1,21 +1,429 @@
 ---
 import Layout from "@layout/layout.astro";
+import { Image } from "astro:assets";
+import kaart from "@images/Nederland.webp";
+import { getLeveranciers } from "@lib/contentful.js";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import type { Document } from "@contentful/rich-text-types";
+import type { Asset } from "contentful";
+
+// Contentful data ophalen
+const leveranciersRaw = await getLeveranciers();
+
+// Structuur normaliseren (zoals in product component)
+const leveranciers = leveranciersRaw.map((leverancier) => {
+    const beschrijvingHtml = leverancier.beschrijving
+        ? documentToHtmlString(leverancier.beschrijving as Document)
+        : "";
+
+    const file = (leverancier.foto as Asset)?.fields?.file?.url;
+    const fotoUrl = file ? `https:${file}` : "";
+
+    return {
+        naam: leverancier.naam as string,
+        beschrijvingHtml,
+        fotoUrl,
+        x: leverancier.xPositiePercentage as number,
+        y: leverancier.yPositiePercentage as number,
+    };
+});
 ---
 
 <Layout>
     <section class="leveranciers-section">
         <h2 class="title">Leveranciers</h2>
+
+        <div class="content-wrapper">
+            <div class="text-column">
+                <p>
+                    Bij Stadsmarkt De Pijp draait het om producten met een
+                    duidelijke herkomst en een manier van werken die helder
+                    blijft. De kaart laat zien waar onze ingrediënten vandaan
+                    komen en hoe ze passen bij wat we willen aanbieden.
+                </p>
+                <br />
+                <p>
+                    We kiezen voor rundvlees van vakmensen, zuivel met ambacht,
+                    vis van ervaren producenten en brood uit bakkerijen waar
+                    kwaliteit leidend is. Groente en fruit volgen het seizoen.
+                    Noten worden vers gebrand en kaas ontstaat bij specialisten
+                    die weten hoe je smaak opbouwt. Onze huismerkproducten
+                    sluiten daarbij aan.
+                </p>
+            </div>
+
+            <!-- MAP -->
+            <div class="map-column">
+                <div class="map-container">
+                    <Image
+                        src={kaart}
+                        alt="Kaart van Nederland"
+                        class="map-image"
+                        width={800}
+                    />
+
+                    {
+                        leveranciers.map((pin) => (
+                            <div
+                                class="pin-wrapper"
+                                style={`left: ${pin.x}%; top: ${pin.y}%;`}
+                                title={pin.naam}
+                                data-pin-data={JSON.stringify({
+                                    name: pin.naam,
+                                    description: pin.beschrijvingHtml,
+                                    imgSrc: pin.fotoUrl,
+                                })}
+                            >
+                                <div class="pin-inner">
+                                    <img
+                                        src={pin.fotoUrl}
+                                        alt={pin.naam}
+                                        width="600"
+                                        height="600"
+                                    />
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
     </section>
+
+    <div id="supplier-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="close-btn" aria-label="Sluiten">
+                <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M1 1L13 13M1 13L13 1"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"></path>
+                </svg>
+            </button>
+
+            <div class="modal-image-col">
+                <img id="modal-img" src="" alt="Leverancier foto" />
+            </div>
+
+            <div class="modal-text-col">
+                <h3 id="modal-title">Titel</h3>
+                <p id="modal-desc">Beschrijving</p>
+            </div>
+        </div>
+    </div>
 </Layout>
+
+<script is:inline>
+    // Client-side script voor de popup functionaliteit
+    const pins = document.querySelectorAll(".pin-wrapper");
+    const modal = document.getElementById("supplier-modal");
+    const closeBtn = document.getElementById("close-modal");
+
+    const modalImg = document.getElementById("modal-img");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-desc");
+
+    // Functie om modal te openen
+    function openModal(data) {
+        if (!modal || !modalImg || !modalTitle || !modalDesc) return;
+
+        modalImg.src = data.imgSrc;
+        modalTitle.textContent = data.name;
+        modalDesc.innerHTML = data.description;
+
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Stop scrollen van body
+    }
+
+    // Functie om modal te sluiten
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.add("hidden");
+        document.body.style.overflow = ""; // Zet scrollen weer aan
+    }
+
+    // Event listeners toevoegen aan pins
+    pins.forEach((pin) => {
+        pin.addEventListener("click", () => {
+            const data = JSON.parse(pin.getAttribute("data-pin-data"));
+            openModal(data);
+        });
+    });
+
+    // Sluit knop
+    closeBtn?.addEventListener("click", closeModal);
+
+    // Sluit als je naast de kaart klikt (op de donkere achtergrond)
+    modal?.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Sluit met escape toets
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+            closeModal();
+        }
+    });
+</script>
 
 <style>
     .leveranciers-section {
-        padding: 10rem var(--container-padding-md) 2rem
-            var(--container-padding-md);
+        padding: 10rem var(--container-padding-lg) 10vh;
+        overflow: hidden;
     }
 
     .title {
-        font-size: 9vw;
         text-align: center;
+        margin-bottom: var(--spacing-lg);
+        font-size: 10vw;
+    }
+
+    /* --- Layout Wrapper --- */
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* --- Tekst Kolom --- */
+    .text-column {
+        order: 1;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+
+    .text-column p {
+        max-width: 100%;
+        font-weight: 500;
+        font-size: clamp(16px, 1.5vw, 20px);
+        line-height: 1.4;
+    }
+
+    /* --- Kaart Kolom --- */
+    .map-column {
+        order: 2;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .map-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .map-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    /* --- Pins Styling --- */
+    .pin-wrapper {
+        position: absolute;
+        width: 12%;
+        aspect-ratio: 1;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 2px solid var(--color-primary);
+        background: var(--color-light);
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease-out;
+    }
+
+    .pin-wrapper:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        z-index: 10;
+    }
+
+    .pin-inner {
+        width: 100%;
+        height: 100%;
+    }
+
+    .pin-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* --- POPUP MODAL STYLING (NIEUW) --- */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4); /* Donkere overlay */
+        backdrop-filter: blur(4px); /* Blur effect achtergrond */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        padding: 20px;
+    }
+
+    .modal-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .modal-content {
+        background: var(--color-light);
+        width: 100%;
+        max-width: 700px;
+        border-radius: var(
+            --border-radius-md
+        ); /* Ronde hoeken zoals screenshot */
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Kolom links: Foto */
+    .modal-image-col {
+        width: 100%;
+        height: 100%;
+        max-height: 380px;
+        background-color: #ddd;
+    }
+
+    .modal-image-col img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Kolom rechts: Tekst */
+    .modal-text-col {
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .modal-text-col p :global(*) {
+        font-size: 16px;
+    }
+
+    #modal-title {
+        font-family: "Sale-bold", sans-serif;
+        color: var(--color-primary);
+        font-size: clamp(2rem, 3vw, 3rem);
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        line-height: 0.9;
+        /* Schuingedrukt effect nabootsen als font dat niet heeft */
+        transform: skewX(-5deg);
+    }
+
+    /* Sluit knop (Cirkel met kruisje) */
+    .close-btn {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--color-primary);
+        background: transparent;
+        color: var(--color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        z-index: 10;
+    }
+
+    .close-btn:hover {
+        transform: rotate(90deg);
+        background: var(--color-primary);
+        color: var(--color-light);
+    }
+
+    .modal-content {
+        flex-direction: column;
+        aspect-ratio: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .modal-image-col {
+        width: 100%;
+        height: 250px; /* Vaste hoogte op mobiel */
+    }
+
+    .modal-text-col {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .close-btn {
+        top: 1rem;
+        right: 1rem;
+        background: var(--color-light); /* Zichtbaar houden op foto */
+    }
+
+    /* --- Desktop Styles (Min-width 900px) --- */
+    @media screen and (min-width: 900px) {
+        .content-wrapper {
+            flex-direction: row;
+            justify-content: center;
+            padding-top: 4rem;
+        }
+
+        .pin-wrapper {
+            width: 8%;
+        }
+
+        .text-column {
+            width: 40%;
+            margin-right: -30%;
+            padding-left: 10%;
+            margin-top: 2vh;
+        }
+
+        .map-column {
+            width: 75%;
+            justify-content: flex-end;
+            margin-right: 10%;
+        }
+
+        .modal-text-col p :global(*) {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        .modal-image-col {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-text-col {
+            /* margin-top: -10vh; */
+            background-color: var(--color-light);
+        }
     }
 </style>

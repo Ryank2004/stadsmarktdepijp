@@ -15,4 +15,17 @@ export async function getProductVanDeMaand() {
   const entry = res.items[0];
 
   return entry.fields; // <-- BELANGRIJK
+
+
 }
+
+export async function getLeveranciers() {
+  const res = await client.getEntries({
+    content_type: "leveranciers",
+    "fields.actief": true,
+  });
+
+  return res.items.map((item) => item.fields);
+}
+
+
