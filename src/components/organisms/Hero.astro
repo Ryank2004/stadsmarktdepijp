@@ -7,8 +7,19 @@ import posterImage from "@images/winkel-zijkant.webp";
         Vers <span class="title-spacing">v</span>an ‘t
     </h1>
     <div class="header-image">
-        <video autoplay muted loop playsinline preload="none" poster={posterImage.src}>
-            <source src=https://pub-1a25cf202b82430c9160c7cbb02d619e.r2.dev/SDP%20promo.mp4 type="video/mp4" />
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster={posterImage.src}
+            {...({ 'fetchpriority': 'high' } as any)}
+        >
+            <source
+                src="https://pub-1a25cf202b82430c9160c7cbb02d619e.r2.dev/SDP%20promo.mp4"
+                type="video/mp4"
+            />
         </video>
 
         <div class="h1-box">
