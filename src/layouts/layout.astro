@@ -3,6 +3,8 @@ import BackgroundTexture from "@atoms/BackgroundTexture.astro";
 import CustomCursor from "@molecules/CustomCursor.astro";
 import Footer from "@organisms/Footer.astro";
 import Navigation from "@organisms/Navigation.astro";
+import { Image } from "astro:assets";
+import Logo from "@images/logo.svg";
 ---
 
 <html lang="en">
@@ -40,13 +42,104 @@ import Navigation from "@organisms/Navigation.astro";
         />
     </head>
     <body>
+        <div id="splash-screen">
+            <div class="splash-content">
+                <Image
+                    src={Logo}
+                    alt="Stadsmarkt Logo"
+                    width="150"
+                    height="150"
+                />
+            </div>
+        </div>
         <!-- <CustomCursor /> -->
         <BackgroundTexture />
         <Navigation />
         <slot />
         <Footer />
     </body>
-    <script>
-        import "../scripts/smooth-scroll";
-    </script>
+
+    <style>
+    /* Full screen overlay */
+    #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-light);
+            z-index: 9000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .splash-content img {
+            animation: pulse 1s ease infinite;
+        }
+
+        .animate-out {
+            animation: fade-out 0.5s ease-out forwards;
+            animation-delay: 1.5s; 
+            pointer-events: none;
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(1.1);
+                visibility: hidden;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </html>
+<script>
+    import "../scripts/smooth-scroll";
+</script>
+
+<script is:inline>
+    // 1. Element ophalen
+    const splash = document.getElementById("splash-screen");
+    
+    // 2. Check: Komen we van een interne klik?
+    if (sessionStorage.getItem("is-internal-nav") === "true") {
+        // JA: Direct verbergen (geen animatie, gewoon weg)
+        splash.style.display = "none";
+        
+        // Vlag weghalen, zodat als je NU op F5 drukt, je de splash weer ziet
+        sessionStorage.removeItem("is-internal-nav");
+    } else {
+        // NEE: Het is een refresh of eerste bezoek -> Start animatie
+        splash.classList.add("animate-out");
+    }
+
+    // 3. Luister naar klikken op links (werkt altijd)
+    document.addEventListener("click", (e) => {
+        // Zoek de dichtstbijzijnde link (want je kan op een span/img in de a klikken)
+        const link = e.target.closest("a");
+
+        // Als het een link is EN hij is intern (zelfde domein)
+        if (link && link.href.startsWith(window.location.origin)) {
+            // Check of het geen target="_blank" of mailto is
+            if (link.target !== "_blank" && !link.href.includes("mailto:")) {
+                 sessionStorage.setItem("is-internal-nav", "true");
+            }
+        }
+    });
+</script>
