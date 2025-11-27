@@ -8,7 +8,9 @@ import posterImage from "@images/winkel-zijkant.webp";
     </h1>
     <div class="header-image">
         <video
+            id="hero-video"
             autoplay
+            muted
             loop
             playsinline
             preload="auto"
@@ -183,3 +185,22 @@ import posterImage from "@images/winkel-zijkant.webp";
         }
     }
 </style>
+
+<script>
+    // Safari Fix: Dwing de browser te luisteren
+    document.addEventListener("DOMContentLoaded", () => {
+        const video = document.getElementById("hero-video") as HTMLVideoElement;
+
+        if (video) {
+            // 1. Dwing de 'muted' status via JavaScript (Safari negeert HTML soms)
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+
+            // 2. Geef een schop onder de kont om te starten
+            video.play().catch((error) => {
+                console.log("Autoplay geblokkeerd, video start niet:", error);
+            });
+        }
+    });
+</script>
