@@ -60,6 +60,8 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
                         alt="Kaart van Nederland"
                         class="map-image"
                         width={800}
+                        loading="eager"
+                        fetchpriority="high"
                     />
 
                     {
@@ -175,23 +177,23 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
 
 <style>
     .leveranciers-section {
-        padding: 10rem var(--container-padding-lg) 10vh;
+        padding: 10.5rem var(--container-padding-lg) 10vh;
         overflow: hidden;
     }
 
     .title {
         text-align: center;
         margin-bottom: var(--spacing-lg);
-        font-size: 9vw;
+        font-size: 9.7vw;
     }
 
     /* --- Layout Wrapper --- */
     .content-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 12rem;
+        gap: 14rem;
         max-width: 1400px;
-        margin: 0 auto;
+        margin: 0 auto 20vh;
     }
 
     /* --- Tekst Kolom --- */
@@ -205,7 +207,7 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
     .text-column p {
         max-width: 100%;
         font-weight: 500;
-        font-size: clamp(16px, 1.5vw, 20px);
+        font-size: clamp(16px, 3.8vw, 20px);
         line-height: 1.4;
     }
 
@@ -222,8 +224,8 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
 
     .map-container {
         position: relative;
-        width: 100%;
-        max-width: 600px;
+        /* width: 100%; */
+        max-width: 300px;
     }
 
     .map-image {
@@ -321,7 +323,6 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 1rem;
     }
 
     .modal-text-col p :global(*) {
@@ -329,9 +330,9 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
     }
 
     #modal-title {
-        font-family: "Sale-bold", sans-serif;
+        font-family: "Sale", sans-serif;
         color: var(--color-primary);
-        font-size: clamp(2rem, 3vw, 3rem);
+        font-size: clamp(1.6rem, 3vw, 2rem);
         text-transform: uppercase;
         margin-bottom: 0.5rem;
         line-height: 0.9;
@@ -393,7 +394,8 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
             flex-direction: row;
             justify-content: center;
             padding-top: 4rem;
-            gap: var(--container-padding-lg);
+            gap: 0;
+            margin: 0 auto;
         }
 
         .pin-wrapper {
@@ -401,18 +403,23 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
             border: 2px solid var(--color-primary);
         }
 
+        .text-column p {
+            max-width: 100%;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
         .text-column {
-            width: 40%;
-            margin-right: -30%;
-            padding-left: 10%;
-            margin-top: 2vh;
+            margin-top: 8vh;
         }
 
         .map-column {
-            width: 75%;
-            justify-content: flex-end;
-            margin-right: 10%;
+            width: 120%;
             scale: 1;
+        }
+
+        .map-container {
+            max-width: 500px;
         }
 
         .modal-text-col p :global(*) {
@@ -426,8 +433,17 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
         }
 
         .modal-text-col {
-            /* margin-top: -10vh; */
             background-color: var(--color-light);
+        }
+    }
+
+    @media screen and (min-width: 1180px) {
+        .map-container {
+            max-width: 600px;
+        }
+
+                .text-column p {
+            font-size: 20px;
         }
     }
 </style>

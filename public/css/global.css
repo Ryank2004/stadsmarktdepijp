@@ -126,6 +126,7 @@ p {
 
 a {
    text-decoration: none;
+   color: var(--color-dark);
 }
 
 ul,

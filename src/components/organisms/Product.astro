@@ -56,27 +56,25 @@ const bedrijfProduct = product.bedrijfProduct as string;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--spacing-lg);
     }
 
     .product-image-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex: 1;
     }
 
     .product-image {
-        width: 90%;
+        width: 100%;
+        min-width: 100%;
         height: auto;
         max-width: 500px;
         transition: transform 0.4s ease;
     }
 
-    @media (hover: hover) and (pointer: fine) {
-        .product-image:hover {
-            transform: scale(1.08);
-            cursor: pointer;
-        }
+    .product-content {
+        flex: 1;
     }
 
     .product-content {
@@ -119,7 +117,7 @@ const bedrijfProduct = product.bedrijfProduct as string;
         }
 
         .product-inner {
-            padding: 0 var(--container-padding-md) 6rem;
+            padding: 0 var(--container-padding-sm) 6rem;
         }
 
         .product-content {
@@ -139,14 +137,13 @@ const bedrijfProduct = product.bedrijfProduct as string;
 
         .product-inner {
             flex-direction: row;
-            gap: 3rem;
-            padding: 0 var(--container-padding-lg) 12rem;
+            padding: 0 var(--container-padding-sm) 12rem;
         }
 
         .product-image {
             width: auto;
-            height: 45vh;
-            max-width: none;
+            /* height: 45vh; */
+            /* max-width: none; */
         }
 
         .product-content {
@@ -184,7 +181,7 @@ const bedrijfProduct = product.bedrijfProduct as string;
 
     @media screen and (min-width: 1224px) {
         .product-image {
-            height: 75vh;
+            /* height: 75vh; */
         }
     }
 </style>
