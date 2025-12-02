@@ -2,9 +2,13 @@
 import Layout from "@layout/layout.astro";
 import { Image } from "astro:assets";
 import slagerij from "@images/slagerij.webp";
+
+// SEO
+const seoTitle = "Ons Team";
+const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die met passie werken aan kwaliteitsproducten. Van slagers en vissers tot bakkers en kaasmakers.";
 ---
 
-<Layout>
+<Layout title={seoTitle} description={seoDescription}>
     <section class="team-section">
         <h2 class="section-title">
             Ons <span class="title-spacing">t</span>eam

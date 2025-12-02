@@ -27,9 +27,13 @@ const leveranciers = leveranciersRaw.map((leverancier) => {
         y: leverancier.yPositiePercentage as number,
     };
 });
+
+// SEO
+const seoTitle = "Onze Leveranciers";
+const seoDescription = "Ontdek waar onze ingrediënten vandaan komen. Lokale boeren, vissers en ambachtelijke makers uit heel Nederland die zorgen voor kwaliteitsproducten.";
 ---
 
-<Layout>
+<Layout title={seoTitle} description={seoDescription}>
     <section class="leveranciers-section">
         <h2 class="title">Leveranciers</h2>
 
