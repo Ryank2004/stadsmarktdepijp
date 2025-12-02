@@ -1,0 +1,275 @@
+---
+import Layout from "@layout/layout.astro";
+import { Image } from "astro:assets";
+import slagerij from "@images/slagerij.webp";
+---
+
+<Layout>
+    <section class="team-section">
+        <h2 class="section-title">
+            Ons <span class="title-spacing">t</span>eam
+        </h2>
+
+        <div class="content-wrapper">
+            
+            <!-- Sectie 1: Tekst links, Foto rechts -->
+            <div class="team-row first-row">
+                <div class="text-content">
+                    <h4 class="first-title">Met de handen</h4>
+                    <p class="subtitle">Wat we doen</p>
+                    <p>
+                        Bij Stadsmarkt De Pijp draait het om mensen die hun vak verstaan.
+                        Snijden, wegen, adviseren, elke dag opnieuw, met aandacht en ervaring.
+                        Onze slagers, vissers en bakkers kennen hun producten door en door.
+                    </p>
+                    <p>
+                        Ze voelen aan wat een stuk vlees nodig heeft, weten wanneer de vis 
+                        perfect is, en begrijpen hoe je een brood laat rijzen. Het zijn 
+                        vakmensen die trots zijn op wat ze doen.
+                    </p>
+                </div>
+                <div class="image-content">
+                    <div class="image-parallax-container">
+                        <Image 
+                            src={slagerij}
+                            alt="Vakmanschap"
+                            width={800}
+                            height={1000}
+                            class="section-image"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sectie 2: Foto links, Tekst rechts -->
+            <div class="team-row reverse">
+                <div class="text-content">
+                    <h4>In het moment</h4>
+                    <p class="subtitle">Hoe we het doen</p>
+                    <p>
+                        Een praatje bij de toonbank, advies over wat er die avond op tafel komt, 
+                        een glimlach als je binnenstapt. Het zijn de kleine momenten die het 
+                        verschil maken bij ons.
+                    </p>
+                    <p>
+                        We nemen de tijd voor je, want goed eten begint met aandacht. 
+                        We kennen onze klanten, herinneren wat je vorige week kocht, 
+                        en denken mee over wat bij je past.
+                    </p>
+                </div>
+                <div class="image-content">
+                    <div class="image-parallax-container">
+                        <Image 
+                            src={slagerij}
+                            alt="Verbinding"
+                            width={800}
+                            height={1000}
+                            class="section-image"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sectie 3: Tekst links, Foto rechts -->
+            <div class="team-row">
+                <div class="text-content">
+                    <h4>Voor elkaar</h4>
+                    <p class="subtitle">Waarom we het doen</p>
+                    <p>
+                        Samen zorgen we ervoor dat boodschappen doen meer is dan een 
+                        lijstje afvinken. Het is kiezen voor kwaliteit, voor contact, 
+                        voor bewust leven.
+                    </p>
+                    <p>
+                        We geloven dat iedereen recht heeft op toegang tot eerlijk, lekker 
+                        en gezond eten. Dat is waar ons team elke dag voor staat.
+                    </p>
+                </div>
+                <div class="image-content">
+                    <div class="image-parallax-container">
+                        <Image 
+                            src={slagerij}
+                            alt="Het team"
+                            width={800}
+                            height={1000}
+                            class="section-image"
+                        />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .team-section {
+        padding: 10.5rem var(--container-padding-md) 4rem;
+        background-color: var(--color-light);
+        color: var(--color-dark);
+    }
+
+    .section-title {
+        font-size: 11vw;
+        margin-bottom: 1rem;
+        text-align: left;
+        line-height: 0.9;
+    }
+
+    .title-spacing {
+        letter-spacing: -2px;
+    }
+
+    .content-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* Team rows */
+    .team-row {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+        opacity: 0;
+    }
+
+    .first-row {
+        opacity: 1;
+    }
+
+    /* Text content */
+    .text-content {
+        flex: 1;
+    }
+
+    .text-content h4 {
+        font-size: clamp(36px, 7vw, 64px);
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+        line-height: 0.9;
+    }
+
+    .first-title {
+        display: none;
+    }
+
+    .subtitle {
+        font-family: var(--font-heading);
+        font-size: clamp(16px, 3vw, 22px);
+        color: var(--color-dark);
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+
+    .text-content p {
+        font-size: clamp(16px, 2.5vw, 20px);
+        line-height: 1.5;
+        margin-bottom: 1.2rem;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    /* Image content */
+    .image-content {
+        flex: 1;
+    }
+
+    /* Image container */
+    .image-parallax-container {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        border-radius: var(--border-radius-md);
+        position: relative;
+    }
+
+    .section-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Tablet */
+    @media screen and (min-width: 687px) {
+        .team-section {
+            padding: 10.5rem var(--container-padding-lg) 6rem;
+        }
+
+        .section-title {
+            margin-bottom: 4rem;
+        }
+
+        .team-row {
+            gap: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .image-parallax-container {
+            height: 450px;
+        }
+    }
+
+    /* Desktop */
+    @media screen and (min-width: 900px) {
+        .team-section {
+            padding: 12rem var(--container-padding-lg) 8rem;
+        }
+
+        .section-title {
+            font-size: 9.7vw;
+            margin-bottom: 8rem;
+            text-align: center;
+        }
+
+        .first-title {
+            display: block;
+        }
+
+        .title-spacing {
+            letter-spacing: -14px;
+        }
+
+        .team-row {
+            flex-direction: row;
+            align-items: center;
+            gap: 6rem;
+            margin-bottom: 10rem;
+        }
+
+        /* Reverse row - Foto links, Tekst rechts */
+        .team-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .text-content {
+            max-width: 600px;
+        }
+
+        .image-content {
+            max-width: 550px;
+        }
+
+        .image-parallax-container {
+            height: 500px;
+        }
+    }
+
+    /* Large desktop */
+    @media screen and (min-width: 1200px) {
+        .team-row {
+            gap: 8rem;
+            margin-bottom: 12rem;
+        }
+    }
+
+    @media screen and (min-width: 1240px) {
+        .text-content h4 {
+            white-space: nowrap;
+        }
+    }
+</style>
+
+<script src="/src/scripts/fade-in.js"></script>
