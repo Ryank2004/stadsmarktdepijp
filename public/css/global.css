@@ -117,7 +117,7 @@ h4 {
 }
 
 p {
-   line-height: 1.5;
+   line-height: 120%;
    color: var(--text-color);
    font-size: clamp(18px, 2vw + .2rem, 1.8rem);
    font-family: "Work Sans", sans-serif;

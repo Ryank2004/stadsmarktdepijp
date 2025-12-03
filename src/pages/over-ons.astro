@@ -1,17 +1,19 @@
 ---
 import Layout from "@layout/layout.astro";
 import { Image } from "astro:assets";
-import slagerij from "@images/slagerij.webp";
+import slager from "@images/lachende-slager.webp";
+import kaas from "@images/kaas-snijden.webp";
+import brood from "@images/brood-aangeven.webp"; 
 
 // SEO
-const seoTitle = "Ons Team";
-const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die met passie werken aan kwaliteitsproducten. Van slagers en vissers tot bakkers en kaasmakers.";
+const seoTitle = "Over Ons";
+const seoDescription = "Leer meer over Stadsmarkt De Pijp. Een team van vakmensen die met passie werken aan kwaliteitsproducten. Van slager tot visspecialist, groente-expert, bakker en kaasspecialist.";
 ---
 
 <Layout title={seoTitle} description={seoDescription}>
     <section class="team-section">
         <h2 class="section-title">
-            Ons <span class="title-spacing">t</span>eam
+            Over <span class="title-spacing">o</span>ns
         </h2>
 
         <div class="content-wrapper">
@@ -23,19 +25,19 @@ const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die m
                     <p class="subtitle">Wat we doen</p>
                     <p>
                         Bij Stadsmarkt De Pijp draait het om mensen die hun vak verstaan.
-                        Snijden, wegen, adviseren, elke dag opnieuw, met aandacht en ervaring.
-                        Onze slagers, vissers en bakkers kennen hun producten door en door.
+                        Snijden, selecteren, adviseren, elke dag opnieuw, met aandacht en ervaring.
+                        Ons team van vakmensen kent hun producten door en door.
                     </p>
                     <p>
-                        Ze voelen aan wat een stuk vlees nodig heeft, weten wanneer de vis 
-                        perfect is, en begrijpen hoe je een brood laat rijzen. Het zijn 
-                        vakmensen die trots zijn op wat ze doen.
+                        Van slager tot visspecialist, van groente-expert tot bakker en kaasspecialist.
+                        Elk teamlid brengt vakmanschap mee en is trots op wat ze doen.
+                        Samen zorgen we ervoor dat je altijd de beste kwaliteit krijgt.
                     </p>
                 </div>
                 <div class="image-content">
                     <div class="image-parallax-container">
                         <Image 
-                            src={slagerij}
+                            src={slager}
                             alt="Vakmanschap"
                             width={800}
                             height={1000}
@@ -51,20 +53,20 @@ const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die m
                     <h4>In het moment</h4>
                     <p class="subtitle">Hoe we het doen</p>
                     <p>
-                        Een praatje bij de toonbank, advies over wat er die avond op tafel komt, 
-                        een glimlach als je binnenstapt. Het zijn de kleine momenten die het 
+                        Een praatje bij de toonbank, advies over wat er die avond op tafel komt,
+                        een glimlach als je binnenstapt. Het zijn de kleine momenten die het
                         verschil maken bij ons.
                     </p>
                     <p>
-                        We nemen de tijd voor je, want goed eten begint met aandacht. 
-                        We kennen onze klanten, herinneren wat je vorige week kocht, 
-                        en denken mee over wat bij je past.
+                        We nemen de tijd voor je, want goed eten begint met persoonlijke aandacht.
+                        Onze vakmensen kennen hun klanten, herinneren voorkeuren,
+                        en denken actief mee over wat bij je wensen past.
                     </p>
                 </div>
                 <div class="image-content">
                     <div class="image-parallax-container">
                         <Image 
-                            src={slagerij}
+                            src={kaas}
                             alt="Verbinding"
                             width={800}
                             height={1000}
@@ -92,7 +94,7 @@ const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die m
                 <div class="image-content">
                     <div class="image-parallax-container">
                         <Image 
-                            src={slagerij}
+                            src={brood}
                             alt="Het team"
                             width={800}
                             height={1000}
@@ -103,12 +105,19 @@ const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die m
             </div>
 
         </div>
+
+        <!-- Afsluitende sectie -->
+        <div class="closing-section">
+            <p class="closing-text">
+                Kom langs en ontmoet ons team. We staan voor je klaar.
+            </p>
+        </div>
     </section>
 </Layout>
 
 <style>
     .team-section {
-        padding: 10.5rem var(--container-padding-md) 4rem;
+        padding: 10.5rem var(--container-padding-md) 8rem;
         background-color: var(--color-light);
         color: var(--color-dark);
     }
@@ -160,7 +169,7 @@ const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die m
 
     .subtitle {
         font-family: var(--font-heading);
-        font-size: clamp(16px, 3vw, 22px);
+        font-size: clamp(18px, 3vw, 22px);
         color: var(--color-dark);
         text-transform: uppercase;
         margin-bottom: 1.5rem;
@@ -168,11 +177,10 @@ const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die m
     }
 
     .text-content p {
-        font-size: clamp(16px, 2.5vw, 20px);
-        line-height: 1.5;
+        font-size: clamp(18px, 1.5vw, 22px);
         margin-bottom: 1.2rem;
         color: var(--text-color);
-        font-weight: 500;
+        /* font-weight: 500; */
     }
 
     /* Image content */
@@ -272,6 +280,35 @@ const seoDescription = "Ontmoet het team van Stadsmarkt De Pijp. Vakmensen die m
     @media screen and (min-width: 1240px) {
         .text-content h4 {
             white-space: nowrap;
+        }
+    }
+
+    /* Closing section */
+    .closing-section {
+        max-width: 1400px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 2rem var(--container-padding-md) 0;
+    }
+
+    .closing-text {
+        font-size: clamp(20px, 3vw, 44px);
+        line-height: 1.4;
+        color: var(--color-primary);
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    @media screen and (min-width: 687px) {
+        .closing-section {
+            padding: 2rem var(--container-padding-lg) 4rem;
+        }
+    }
+
+    @media screen and (min-width: 900px) {
+        .closing-section {
+            padding: 2rem var(--container-padding-lg) 4rem;
         }
     }
 </style>
