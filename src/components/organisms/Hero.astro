@@ -198,8 +198,8 @@ import posterImage from "@images/winkel-zijkant.webp";
             video.playsInline = true;
 
             // 2. Geef een schop onder de kont om te starten
-            video.play().catch((error) => {
-                console.log("Autoplay geblokkeerd, video start niet:", error);
+            video.play().catch(() => {
+                // Autoplay geblokkeerd - stille fallback
             });
         }
     });
