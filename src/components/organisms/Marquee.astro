@@ -8,10 +8,12 @@ import cinnamonroll from "@images/cinnamon-roll.webp";
 import vlag from "@images/vlag.webp";
 ---
 <section class="marquees">
+<div>
 <div class="marquee-text-wrapper">
     <div class="marquee-text">
-        <h2>Uit de buurt, voor de buurt! - </h2>
+        <h2>Uit de buurt, voor de buurt! <span class="separator">•</span> </h2>
     </div>
+</div>
 </div>
 
 <div class="marquee-image-wrapper">
@@ -19,7 +21,7 @@ import vlag from "@images/vlag.webp";
         <div class="image-group">
             <Image
                 src={wijn}
-                alt="Slider Image 1"
+                alt="Wijnfles en glazen met rode wijn"
                 class="image"
                 width={800}
                 height={600}
@@ -27,7 +29,7 @@ import vlag from "@images/vlag.webp";
             />
             <Image
                 src={groente}
-                alt="Slider Image 1"
+                alt="Verse groenten van lokale boeren"
                 class="image"
                 width={800}
                 height={600}
@@ -35,7 +37,7 @@ import vlag from "@images/vlag.webp";
             />
             <Image
                 src={vlag}
-                alt="Slider Image 1"
+                alt="Nederlandse vlag symbool voor lokale producten"
                 class="image"
                 width={800}
                 height={600}
@@ -43,7 +45,7 @@ import vlag from "@images/vlag.webp";
             />
             <Image
                 src={kaaswielen}
-                alt="Slider Image 1"
+                alt="Artisanale kaaswielen van Nederlandse kaasmakers"
                 class="image"
                 width={800}
                 height={600}
@@ -51,7 +53,7 @@ import vlag from "@images/vlag.webp";
             />
             <Image
                 src={snijden}
-                alt="Slider Image 1"
+                alt="Slager snijdt vers vlees met vakmanschap"
                 class="image"
                 width={800}
                 height={600}
@@ -59,7 +61,7 @@ import vlag from "@images/vlag.webp";
             />
             <Image
                 src={cinnamonroll}
-                alt="Slider Image 1"
+                alt="Vers gebakken kaneelbroodjes uit eigen bakkerij"
                 class="image"
                 width={800}
                 height={600}
@@ -125,6 +127,11 @@ import vlag from "@images/vlag.webp";
     .image-group .image:nth-of-type(odd) {
         aspect-ratio: 1 / 1.3;
         object-fit: cover;
+    }
+
+    .separator {
+        color: var(--color-dark);
+        margin: 0 1vw;
     }
 
     @media screen and (min-width: 687px) {

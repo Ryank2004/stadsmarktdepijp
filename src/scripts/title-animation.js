@@ -19,15 +19,16 @@ gsap.matchMedia().add("(min-width: 940px)", () => {
         gsap.from(chars, {
             scrollTrigger: {
                 trigger: textElement,
-                start: "20% 85%",
+                duration: 0.1,
+                start: "50% 85%",
                 end: "90% 85%",
-                scrub: true,
+                // scrub: true,
                 onLeave: self => self.kill(false, true),
                 // markers: true,
             },
             color: "var(--color-dark)",
-            stagger: .1,
-            duration: 1,
+            stagger: .05,
+            duration: .6,
         });
     });
 });
