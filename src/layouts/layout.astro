@@ -239,22 +239,12 @@ const imageUrl = new URL(image, siteUrl).href;
         }
     }
 
-    // 3. Link logica met View Transition support
+    // 3. Link logica (ongewijzigd)
     document.addEventListener("click", (e) => {
         const link = e.target.closest("a");
         if (link && link.href.startsWith(window.location.origin)) {
             if (link.target !== "_blank" && !link.href.includes("mailto:")) {
-                sessionStorage.setItem("is-internal-nav", "true");
-
-                // Trigger View Transition als browser het ondersteunt
-                if (document.startViewTransition && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
-                    e.preventDefault();
-
-                    document.startViewTransition(async () => {
-                        await fetch(link.href);
-                        window.location.href = link.href;
-                    });
-                }
+                 sessionStorage.setItem("is-internal-nav", "true");
             }
         }
     });
