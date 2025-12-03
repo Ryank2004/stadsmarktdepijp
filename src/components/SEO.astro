@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://stadsmarktdepijp.nl';
-const fullTitle = `${title} | Stadsmarkt De Pijp`;
+const fullTitle = `Stadsmarkt De Pijp | ${title}`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
 const imageUrl = new URL(image, siteUrl).href;
 ---
