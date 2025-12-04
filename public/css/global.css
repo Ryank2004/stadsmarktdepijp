@@ -381,35 +381,18 @@ li {
    }
 }
 
-@view-transition {
-  navigation: auto;
+/* Page load animatie - werkt in alle browsers */
+main, section {
+  animation: page-slide-in-up 0.4s cubic-bezier(0.33, 1.7, 0.55, 1) both;
 }
 
-/* Zorg dat dit ID of deze class op elke pagina hetzelfde is */
-.main-nav {
-    view-transition-name: main-header;
-}
-
-.secondary-nav {
-      view-transition-name: secondary-header;
-}
-
-/* De oude pagina vervaagt en zakt iets weg */
-::view-transition-old(root) {
-  animation: 0.4s ease-in both fade-out-scale;
-}
-
-/* De nieuwe pagina komt op en schuift van beneden naar boven */
-::view-transition-new(root) {
-  animation: 0.4s cubic-bezier(0.33, 1.7, 0.55, 1) both slide-in-up;
-}
-
-@keyframes fade-out-scale {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.95); }
-}
-
-@keyframes slide-in-up {
-  from { opacity: 0; transform: translateY(50px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes page-slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
