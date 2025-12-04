@@ -151,53 +151,57 @@ const imageUrl = new URL(image, siteUrl).href;
     </body>
 
     <style>
-    /* Full screen overlay */
+    /* Full screen overlay met pure CSS animatie */
     #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--color-light);
-            z-index: 9000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--color-light);
+        z-index: 9000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: splash-fade-out 0.5s ease-out forwards;
+        animation-delay: 1.5s;
+        pointer-events: none;
+    }
 
-        .splash-content img {
-            animation: pulse 1s ease infinite;
-        }
+    /* Verberg splash screen direct bij interne navigatie */
+    #splash-screen.hide-splash {
+        display: none;
+    }
 
-        .animate-out {
-            animation: fade-out 0.5s ease-out forwards;
-            animation-delay: 0s; /* AANGEPAST: Was 1.5s. Nu direct starten als 'load' klaar is */
-            pointer-events: none;
-        }
+    .splash-content img {
+        animation: pulse 1s ease infinite;
+        animation-duration: 1.5s;
+    }
 
-        @keyframes fade-out {
-            from {
-                opacity: 1;
-                transform: scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: scale(1.1);
-                visibility: hidden;
-            }
+    @keyframes splash-fade-out {
+        from {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible;
         }
+        to {
+            opacity: 0;
+            transform: scale(1.1);
+            visibility: hidden;
+        }
+    }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
         }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
     </style>
 </html>
 <script>
@@ -205,47 +209,27 @@ const imageUrl = new URL(image, siteUrl).href;
 </script>
 
 <script is:inline>
+    // Check of we van een interne navigatie komen
     const splash = document.getElementById("splash-screen");
-    const MINIMUM_LOADING_TIME = 800; // Pas aan naar wens (in ms), bijv 800 of 1000
-    const startTime = Date.now();
 
-    function hideSplash() {
-        splash.classList.add("animate-out");
-    }
+    // Check of deze page load via interne navigatie was
+    const isInternalNav = sessionStorage.getItem("is-internal-nav") === "true";
 
-    // 1. Check: Komen we van een interne klik?
-    if (sessionStorage.getItem("is-internal-nav") === "true") {
-        // Direct weg, geen vertraging, geen animatie
-        splash.style.display = "none";
+    if (isInternalNav) {
+        // Verberg splash bij interne navigatie
+        splash.classList.add("hide-splash");
         sessionStorage.removeItem("is-internal-nav");
-    } else {
-        // 2. NEE: Dit is een refresh of eerste bezoek.
-
-        // Functie die berekent hoe lang we nog moeten wachten
-        const finishLoading = () => {
-            const elapsedTime = Date.now() - startTime;
-            const remainingTime = MINIMUM_LOADING_TIME - elapsedTime;
-            
-            // Als we sneller waren dan de minimale tijd, wachten we de restjes
-            // Als we trager waren, is de wachttijd negatief (dus 0, direct uitvoeren)
-            setTimeout(hideSplash, Math.max(0, remainingTime));
-        };
-
-        // Wacht tot de pagina ECHT klaar is
-        if (document.readyState === "complete") {
-            finishLoading();
-        } else {
-            window.addEventListener('load', finishLoading);
-        }
     }
+    // Anders: eerste bezoek of refresh - toon splash (default CSS gedrag)
 
-    // 3. Link logica (ongewijzigd)
+    // Mark interne navigatie voor volgende page load
     document.addEventListener("click", (e) => {
         const link = e.target.closest("a");
-        if (link && link.href.startsWith(window.location.origin)) {
+        if (link && link.href && link.href.startsWith(window.location.origin)) {
             if (link.target !== "_blank" && !link.href.includes("mailto:")) {
-                 sessionStorage.setItem("is-internal-nav", "true");
+                sessionStorage.setItem("is-internal-nav", "true");
             }
         }
     });
 </script>
+
