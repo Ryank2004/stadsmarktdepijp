@@ -17,10 +17,10 @@ const {
     title = "Verse Bio Supermarkt Amsterdam De Pijp",
     description = "Biologische supermarkt in Amsterdam met lokale groenten, vis, vlees en kaas. Kwaliteit en ambacht op de eerste plaats.",
     image = "/images/winkel-zijkant.webp",
-    canonical
+    canonical,
 } = Astro.props;
 
-const siteUrl = 'https://stadsmarktdepijp.nl';
+const siteUrl = "https://stadsmarktdepijp.nl";
 const fullTitle = `${title} | Stadsmarkt De Pijp`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
 const imageUrl = new URL(image, siteUrl).href;
@@ -29,7 +29,21 @@ const imageUrl = new URL(image, siteUrl).href;
 <html lang="nl">
     <head>
         <meta charset="utf-8" />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/favicon-96x96.png"
+            sizes="96x96"
+        />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="Stadsmarkt" />
+        <link rel="manifest" href="/site.webmanifest" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
 
@@ -62,7 +76,10 @@ const imageUrl = new URL(image, siteUrl).href;
 
         <!-- Preconnect for Performance -->
         <link rel="preconnect" href="https://cdn.contentful.com" />
-        <link rel="preconnect" href="https://pub-1a25cf202b82430c9160c7cbb02d619e.r2.dev" />
+        <link
+            rel="preconnect"
+            href="https://pub-1a25cf202b82430c9160c7cbb02d619e.r2.dev"
+        />
 
         <link rel="stylesheet" href="/css/global.css" />
         <link
@@ -89,47 +106,52 @@ const imageUrl = new URL(image, siteUrl).href;
 
         <!-- Structured Data (JSON-LD) -->
         <script type="application/ld+json" is:inline>
-        {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Stadsmarkt De Pijp",
-            "image": "https://stadsmarktdepijp.nl/images/logo.svg",
-            "description": "Biologische supermarkt in Amsterdam met lokale groenten, vis, vlees en kaas. Kwaliteit en ambacht op de eerste plaats.",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Van Woustraat 103",
-                "addressLocality": "Amsterdam",
-                "addressRegion": "Noord-Holland",
-                "postalCode": "1074 AH",
-                "addressCountry": "NL"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "52.3519",
-                "longitude": "4.8933"
-            },
-            "telephone": "+31208944276",
-            "email": "mail@stadsmarktdepijp.nl",
-            "url": "https://stadsmarktdepijp.nl",
-            "priceRange": "€€",
-            "openingHoursSpecification": [
-                {
-                    "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                    "opens": "09:00",
-                    "closes": "20:00"
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Stadsmarkt De Pijp",
+                "image": "https://stadsmarktdepijp.nl/images/logo.svg",
+                "description": "Biologische supermarkt in Amsterdam met lokale groenten, vis, vlees en kaas. Kwaliteit en ambacht op de eerste plaats.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Van Woustraat 103",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "Noord-Holland",
+                    "postalCode": "1074 AH",
+                    "addressCountry": "NL"
                 },
-                {
-                    "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": "Sunday",
-                    "opens": "12:00",
-                    "closes": "18:00"
-                }
-            ],
-            "sameAs": [
-                "https://www.instagram.com/stadsmarktdepijp"
-            ]
-        }
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "52.3519",
+                    "longitude": "4.8933"
+                },
+                "telephone": "+31208944276",
+                "email": "mail@stadsmarktdepijp.nl",
+                "url": "https://stadsmarktdepijp.nl",
+                "priceRange": "€€",
+                "openingHoursSpecification": [
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday"
+                        ],
+                        "opens": "09:00",
+                        "closes": "20:00"
+                    },
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": "Sunday",
+                        "opens": "12:00",
+                        "closes": "18:00"
+                    }
+                ],
+                "sameAs": ["https://www.instagram.com/stadsmarktdepijp"]
+            }
         </script>
     </head>
     <body>
@@ -151,57 +173,57 @@ const imageUrl = new URL(image, siteUrl).href;
     </body>
 
     <style>
-    /* Full screen overlay met pure CSS animatie */
-    #splash-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: var(--color-light);
-        z-index: 9000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        animation: splash-fade-out 0.5s ease-out forwards;
-        animation-delay: 1.5s;
-        pointer-events: none;
-    }
+        /* Full screen overlay met pure CSS animatie */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-light);
+            z-index: 9000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: splash-fade-out 0.5s ease-out forwards;
+            animation-delay: 1.5s;
+            pointer-events: none;
+        }
 
-    /* Verberg splash screen direct bij interne navigatie */
-    #splash-screen.hide-splash {
-        display: none;
-    }
+        /* Verberg splash screen direct bij interne navigatie */
+        #splash-screen.hide-splash {
+            display: none;
+        }
 
-    .splash-content img {
-        animation: pulse 1s ease infinite;
-        animation-duration: 1.5s;
-    }
+        .splash-content img {
+            animation: pulse 1s ease infinite;
+            animation-duration: 1.5s;
+        }
 
-    @keyframes splash-fade-out {
-        from {
-            opacity: 1;
-            transform: scale(1);
-            visibility: visible;
+        @keyframes splash-fade-out {
+            from {
+                opacity: 1;
+                transform: scale(1);
+                visibility: visible;
+            }
+            to {
+                opacity: 0;
+                transform: scale(1.1);
+                visibility: hidden;
+            }
         }
-        to {
-            opacity: 0;
-            transform: scale(1.1);
-            visibility: hidden;
-        }
-    }
 
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
-        50% {
-            transform: scale(1.05);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
     </style>
 </html>
 <script>
@@ -232,4 +254,3 @@ const imageUrl = new URL(image, siteUrl).href;
         }
     });
 </script>
-
