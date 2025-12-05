@@ -1,0 +1,189 @@
+---
+import { Image } from "astro:assets";
+import wijn from "@images/wijn.webp";
+import kaaswielen from "@images/kaaswielen.webp";
+import groente from "@images/groente.webp";
+import snijden from "@images/snijden.webp";
+import cinnamonroll from "@images/cinnamon-roll.webp";
+import vlag from "@images/vlag.webp";
+---
+<section class="marquees">
+<div>
+<div class="marquee-text-wrapper">
+    <div class="marquee-text">
+        <h2>Uit de buurt, voor de buurt! <span class="separator">•</span> </h2>
+    </div>
+</div>
+</div>
+
+<div class="marquee-image-wrapper">
+    <div class="marquee-image">
+        <div class="image-group">
+            <Image
+                src={wijn}
+                alt="Wijnfles en glazen met rode wijn"
+                class="image"
+                width={800}
+                height={600}
+                loading="eager"
+            />
+            <Image
+                src={groente}
+                alt="Verse groenten van lokale boeren"
+                class="image"
+                width={800}
+                height={600}
+                loading="eager"
+            />
+            <Image
+                src={vlag}
+                alt="Nederlandse vlag symbool voor lokale producten"
+                class="image"
+                width={800}
+                height={600}
+                loading="eager"
+            />
+            <Image
+                src={kaaswielen}
+                alt="Artisanale kaaswielen van Nederlandse kaasmakers"
+                class="image"
+                width={800}
+                height={600}
+                loading="eager"
+            />
+            <Image
+                src={snijden}
+                alt="Slager snijdt vers vlees met vakmanschap"
+                class="image"
+                width={800}
+                height={600}
+                loading="eager"
+            />
+            <Image
+                src={cinnamonroll}
+                alt="Vers gebakken kaneelbroodjes uit eigen bakkerij"
+                class="image"
+                width={800}
+                height={600}
+                loading="eager"
+            />
+        </div>
+    </div>
+</div>
+</section>
+
+<style>
+    .marquees {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .marquee-text-wrapper {
+        white-space: nowrap;
+        padding-top: 10vh;
+        transform: translateX(-20%);
+    }
+
+    .marquee-text {
+        display: inline-block;
+        padding-left: 2vw;
+    }
+
+    .marquee-image-wrapper {
+        white-space: nowrap;
+        padding-top: 6vh;
+        padding-bottom: 10vh;
+        transform: translateX(-20%);
+    }
+
+    .marquee-image {
+        display: inline-block;
+    }
+
+    .marquee-text h2 {
+        text-wrap: nowrap;
+        font-size: 18vw;
+    }
+
+    .image-group {
+        gap: 5vw;
+        padding-right: 5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-group .image {
+        width: 40vw;
+        height: auto;
+        border-radius: var(--border-radius-sm);
+    }
+
+    .image-group .image:nth-of-type(even) {
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    .image-group .image:nth-of-type(odd) {
+        aspect-ratio: 1 / 1.3;
+        object-fit: cover;
+    }
+
+    .separator {
+        color: var(--color-dark);
+        margin: 0 1vw;
+    }
+
+    @media screen and (min-width: 687px) {
+        .sliders {
+            margin: 15vh 0;
+        }
+
+        .slider {
+            margin: 70px auto;
+        }
+
+        .image-group {
+            gap: 3vw;
+            padding-right: 3vw;
+        }
+
+        .image-group .image {
+            width: 25vw;
+        }
+
+        .marquee-text h2 {
+            font-size: clamp(64px, 8vw + 1rem, 8rem);
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .slider {
+            margin: 100px auto;
+        }
+
+        .marquee-text-wrapper {
+            padding-top: 20vh;
+        }
+
+        .marquee-image-wrapper {
+            padding-bottom: 20vh;
+        }
+
+        .image-group .image {
+            width: 20vw;
+            border-radius: var(--border-radius-md);
+        }
+
+        .text-group {
+            padding-right: 8rem;
+        }
+
+        .image-group {
+            gap: 2vw;
+            padding-right: 2vw;
+        }
+    }
+</style>
+
+<script src="/src/scripts/marquee.js"></script>

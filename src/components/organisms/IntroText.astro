@@ -1,0 +1,81 @@
+<section class="intro-text-section">
+    <h3 class="intro-title">Zoals het hoort!</h3>
+    <p class="intro-text">
+        Bij Stadsmarkt de Pijp doe je boodschappen met een goed gevoel. Lokale
+        groentes, vis, vlees en kazen vormen de basis, aangevuld met de
+        vertrouwde producten die je kent uit de supermarkt.<br />
+        <br />
+        Biologisch en seizoensgebonden waar het kan, en altijd bewust en dichtbij.
+        Zo combineer je het beste van beide werelden en is boodschappen doen weer
+        zoals het hoort: eerlijk, lekker en nét even bewuster.
+    </p>
+</section>
+
+<style>
+    .intro-text-section {
+        padding: 2rem var(--container-padding-lg) 2rem
+            var(--container-padding-lg);
+    }
+
+    .intro-text-section p {
+        margin: 1rem 0 0 0;
+    }
+
+    @media screen and (min-width: 687px) {
+        .intro-text-section {
+            padding: 3rem var(--container-padding-xl) 3rem
+                var(--container-padding-xl);
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .intro-text-section {
+            display: flex;
+            flex-direction: row;
+            padding: 5rem var(--container-padding-lg) 5rem
+                var(--container-padding-lg);
+        }
+
+        .intro-text-section p {
+            margin: 0.4rem 0 0 0;
+        }
+
+        .intro-text-section h3 {
+            min-width: 25vw;
+            margin-right: 10vw;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const textElements = document.querySelectorAll(".intro-text");
+
+    textElements.forEach((textElement) => {
+        const text = textElement.textContent;
+        textElement.innerHTML = text
+            .split("")
+            .map((char) => `<span>${char}</span>`)
+            .join("");
+
+        const chars = textElement.querySelectorAll("span");
+
+        gsap.from(chars, {
+            scrollTrigger: {
+                trigger: textElement,
+                start: "0% bottom",
+                end: "80% 60%",
+                scrub: true,
+                // markers: true,
+            },
+            color: "var(--color-light)",
+            stagger: .01, // Delay between each character animation
+            duration: 1,
+        });
+    });
+    // })
+</script>

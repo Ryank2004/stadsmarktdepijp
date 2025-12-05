@@ -1,0 +1,290 @@
+---
+import Layout from "@layout/layout.astro";
+
+// Je kunt deze gegevens eventueel ook uit Contentful halen later
+const contactInfo = {
+    address: ["Van Woustraat 103", "1074 AH Amsterdam"],
+    email: "info@stadsmarktdepijp.nl",
+    phone: "020 8944276", // Pas aan naar echt nummer
+    phoneClean: "020 8944276", // Voor de tel:
+};
+
+// SEO
+const seoTitle = "Contact";
+const seoDescription = "Bezoek Stadsmarkt De Pijp op Van Woustraat 103 in Amsterdam. Openingstijden: ma-za 09:00-20:00, zondag 12:00-18:00. Bel ons op 020 8944276.";
+---
+
+<Layout title={seoTitle} description={seoDescription}>
+    <section class="contact-section">
+        <h2 class="section-title">
+            Co<span class="title-spacing-small">n</span><span
+                class="title-spacing">t</span
+            >a<span class="title-spacing-small">c</span>t
+        </h2>
+
+        <div class="content-grid">
+            <div class="info-column">
+                <p class="intro-text">
+                    Heb je een vraag over onze producten of wil je samenwerken?
+                    Loop gerust binnen bij ons in de Pijp of neem contact op. We
+                    staan klaar om je te helpen met de beste ingrediënten en
+                    advies.
+                </p>
+
+                <div class="contact-details">
+                    <div class="detail-block">
+                        <h3 class="detail-title">Adres</h3>
+                        <address>
+                            {
+                                contactInfo.address.map((line) => (
+                                    <span>{line}</span>
+                                ))
+                            }
+                        </address>
+                    </div>
+
+                    <div class="detail-block">
+                        <h3 class="detail-title">Gegevens</h3>
+
+                        <a href={`mailto:${contactInfo.email}`} class="text">
+                            <span>{contactInfo.email}</span>
+                        </a>
+
+                        <a href={`tel:${contactInfo.phoneClean}`} class="text">
+                            <span>tel: {contactInfo.phone}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hours-column">
+                <div class="hours-card">
+                    <h3 class="detail-title">Openingstijden</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span class="day">Maandag</span>
+                            <span class="time">09:00 - 20:00</span>
+                        </li>
+                        <li>
+                            <span class="day">Dinsdag</span>
+                            <span class="time">09:00 - 20:00</span>
+                        </li>
+                        <li>
+                            <span class="day">Woensdag</span>
+                            <span class="time">09:00 - 20:00</span>
+                        </li>
+                        <li>
+                            <span class="day">Donderdag</span>
+                            <span class="time">09:00 - 20:00</span>
+                        </li>
+                        <li>
+                            <span class="day">Vrijdag</span>
+                            <span class="time">09:00 - 20:00</span>
+                        </li>
+                        <li>
+                            <span class="day">Zaterdag</span>
+                            <span class="time">09:00 - 20:00</span>
+                        </li>
+                        <li class="sunday">
+                            <span class="day">Zondag</span>
+                            <span class="time">10:00 - 20:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .contact-section {
+        padding: 10.5rem var(--container-padding-md);
+        background-color: var(--color-light);
+        color: var(--color-dark);
+    }
+
+    .section-title {
+        font-size: 11vw; /* Zelfde size als in je global H1/H2 */
+        margin-bottom: var(--spacing-lg);
+        text-align: left;
+        line-height: 0.9;
+    }
+
+    .title-spacing {
+        letter-spacing: -2px;
+    }
+
+    .title-spacing-small {
+        letter-spacing: 3px;
+    }
+
+    @media screen and (min-width: 900px) {
+        .section-title {
+            font-size: 9.7vw;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .title-spacing {
+            letter-spacing: -14px;
+        }
+
+        .title-spacing-small {
+            letter-spacing: 12px;
+        }
+    }
+
+    /* --- Grid Layout --- */
+    .content-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    /* --- Kolom 1: Info --- */
+    .intro-text {
+        font-size: clamp(16px, 1.5vw, 24px);
+        line-height: 1.4;
+        max-width: 600px;
+        margin-bottom: 3rem;
+        font-weight: 500;
+    }
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    @media screen and (min-width: 480px) {
+        .contact-details {
+            flex-direction: row; /* Adres en Gegevens naast elkaar op desktop */
+            gap: 4rem;
+        }
+    }
+
+    .detail-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-left: 0.2rem;
+    }
+
+    .detail-title {
+        font-family: var(--font-heading); /* De 'Sale' font */
+        color: var(--color-primary);
+        font-size: 1.8rem;
+        text-transform: uppercase;
+    }
+
+    .hours-card .detail-title {
+        margin-bottom: 1.2rem;
+    }
+
+    address {
+        font-family: var(--font-body);
+        font-style: normal;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.4;
+        color: var(--text-color);
+    }
+
+    /* Specifieke stijl override voor s in deze sectie zodat ze donker zijn */
+    .text span {
+        color: var(--text-color);
+        font-size: 16px;
+        font-family: var(--font-body);
+    }
+
+    .route- {
+        margin-top: 0.5rem;
+        text-decoration: underline;
+        text-decoration-color: var(--color-primary);
+    }
+
+    /* --- Kolom 2: Tijden --- */
+    .hours-column {
+        width: 100%;
+    }
+
+    .hours-card {
+        border: 2px solid var(--color-primary);
+        border-radius: var(--border-radius-md);
+        padding: 2rem;
+        background: transparent;
+        max-width: 600px;
+    }
+
+    .hours-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+    }
+
+    .hours-list li {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 0.5rem;
+    }
+
+    .hours-list li:last-child {
+        border-bottom: none;
+    }
+
+    .hours-list .day {
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    /* Highlight voor Zondag (optioneel) */
+    .sunday {
+        color: var(--color-primary);
+    }
+
+    /* --- Desktop --- */
+    @media screen and (min-width: 687px) {
+        .contact-section {
+            padding: 10.5rem var(--container-padding-lg);
+        }
+    }
+
+    @media screen and (min-width: 900px) {
+        .contact-section {
+            padding: 12rem var(--container-padding-lg);
+        }
+
+        .intro-text {
+            font-size: clamp(18px, 2vw + .2rem, 1.4rem);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 50% - 50% verdeling */
+            gap: var(--spacing-lg);
+            align-items: start;
+        }
+
+        address {
+            font-size: clamp(18px, 2vw + .2rem, 1.4rem);
+        }
+
+        .text span {
+            font-size: clamp(18px, 2vw + .2rem, 1.4rem);
+        }
+
+        .hours-column {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hours-card {
+            width: 100%;
+            max-width: 450px; /* Niet te breed op grote schermen */
+        }
+    }
+</style>

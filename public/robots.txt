@@ -1,0 +1,14 @@
+# Robots.txt for Stadsmarkt De Pijp
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://stadsmarktdepijp.nl/sitemap.xml
+
+# Disallow admin and system directories
+Disallow: /admin/
+Disallow: /.astro/
+Disallow: /api/
+
+# Crawl-delay for politeness
+Crawl-delay: 10

@@ -1,0 +1,189 @@
+---
+import { getProductVanDeMaand } from "@lib/contentful.js";
+import type { Document } from "@contentful/rich-text-types";
+import type { Asset } from "contentful";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+const product = await getProductVanDeMaand();
+
+const descriptionHtml = product.beschrijvingProduct
+    ? documentToHtmlString(product.beschrijvingProduct as Document)
+    : "";
+
+const imageUrl = (product.fotoProduct as Asset)?.fields?.file?.url;
+const productNaam = product.productNaam as string;
+const bedrijfProduct = product.bedrijfProduct as string;
+---
+
+<section class="product-section">
+    <h2>Nu in de spotlight!</h2>
+
+    <div class="product-inner">
+        <div class="product-image-wrapper">
+            <img
+                src={imageUrl ? `https:${imageUrl}` : ""}
+                alt={productNaam}
+                class="product-image"
+                width="800"
+                height="1000"
+                loading="lazy"
+            />
+        </div>
+
+        <div class="product-content">
+            <h3 class="title">{productNaam}</h3>
+            <h4 class="subtitle">{bedrijfProduct}</h4>
+            <div class="text" set:html={descriptionHtml} />
+            <p class="additional-info">Nu verkrijgbaar in onze winkel!</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .product-section {
+        background-color: var(--color-dark);
+        border-radius: var(--border-radius-md);
+        margin: 0 auto;
+    }
+
+    .product-section h2 {
+        text-align: center;
+        color: var(--color-light);
+        padding: 24vw 0 2rem;
+    }
+
+    .product-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+
+    .product-image {
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        max-width: 500px;
+        transition: transform 0.4s ease;
+    }
+
+    .product-content {
+        flex: 1;
+    }
+
+    .product-content {
+        display: flex;
+        flex-direction: column;
+        padding: 0 var(--container-padding-md) 4rem;
+        max-width: 450px;
+    }
+
+    .title {
+        font-size: min(10vw, 44px);
+    }
+
+    .title,
+    .subtitle,
+    .text,
+    .additional-info {
+        color: var(--color-light);
+    }
+
+    .subtitle {
+        padding-bottom: var(--spacing-md);
+    }
+
+    .text :global(*) {
+        color: var(--color-light);
+    }
+
+    .additional-info {
+        padding-top: var(--spacing-md);
+        font-weight: bold;
+        display: inline-block;
+        border-bottom: 1px solid var(--color-light);
+        width: fit-content;
+    }
+
+    @media screen and (min-width: 568px) {
+        .product-section h2 {
+            padding: 10vw 0 4rem var(--container-padding-sm);
+        }
+
+        .product-inner {
+            padding: 0 var(--container-padding-sm) 6rem;
+        }
+
+        .product-content {
+            padding: 2rem 0 0;
+        }
+
+        .product-image-wrapper,
+        .product-image {
+            border-radius: var(--border-radius-md);
+        }
+    }
+
+    @media screen and (min-width: 868px) {
+        .product-section h2 {
+            padding: 10vw 0 6rem;
+        }
+
+        .product-inner {
+            flex-direction: row;
+            padding: 0 var(--container-padding-sm) 12rem;
+        }
+
+        .product-image {
+            width: auto;
+            /* height: 45vh; */
+            /* max-width: none; */
+        }
+
+        .product-content {
+            width: 100%;
+            max-width: none;
+        }
+
+        .subtitle {
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .product-section {
+            border-radius: var(--border-radius-lg);
+        }
+
+        .product-section h2 {
+            text-align: left;
+            padding: 14vw 0 8rem var(--container-padding-sm);
+        }
+
+        .title {
+            font-size: min(6vw, 64px);
+        }
+
+        .subtitle {
+            padding-bottom: 2rem;
+        }
+
+        .additional-info {
+            padding-top: 1.5rem;
+        }
+    }
+
+    @media screen and (min-width: 1224px) {
+        .product-image {
+            /* height: 75vh; */
+        }
+    }
+</style>
+
+<script src="/src/scripts/title-animation.js"></script>

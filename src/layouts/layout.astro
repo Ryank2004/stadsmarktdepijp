@@ -1,0 +1,256 @@
+---
+import BackgroundTexture from "@atoms/BackgroundTexture.astro";
+// import CustomCursor from "@molecules/CustomCursor.astro";
+import Footer from "@organisms/Footer.astro";
+import Navigation from "@organisms/Navigation.astro";
+import { Image } from "astro:assets";
+import Logo from "@images/logo.svg";
+
+export interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+    canonical?: string;
+}
+
+const {
+    title = "Verse Bio Supermarkt Amsterdam De Pijp",
+    description = "Biologische supermarkt in Amsterdam met lokale groenten, vis, vlees en kaas. Kwaliteit en ambacht op de eerste plaats.",
+    image = "/images/winkel-zijkant.webp",
+    canonical,
+} = Astro.props;
+
+const siteUrl = "https://stadsmarktdepijp.nl";
+const fullTitle = `${title} | Stadsmarkt De Pijp`;
+const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
+const imageUrl = new URL(image, siteUrl).href;
+---
+
+<html lang="nl">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link
+            rel="icon"
+            type="image/png"
+            href="/favicon-96x96.png"
+            sizes="96x96"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="Stadsmarkt" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- Primary Meta Tags -->
+        <title>{fullTitle}</title>
+        <meta name="title" content={fullTitle} />
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:locale" content="nl_NL" />
+        <meta property="og:site_name" content="Stadsmarkt De Pijp" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={canonicalURL} />
+        <meta property="twitter:title" content={fullTitle} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={imageUrl} />
+
+        <!-- Additional SEO -->
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Stadsmarkt De Pijp" />
+        <meta name="language" content="Dutch" />
+
+        <!-- Preconnect for Performance -->
+        <link rel="preconnect" href="https://cdn.contentful.com" />
+        <link
+            rel="preconnect"
+            href="https://pub-1a25cf202b82430c9160c7cbb02d619e.r2.dev"
+        />
+
+        <link rel="stylesheet" href="/css/global.css" />
+        <link
+            rel="preload"
+            href="/fonts/work-sans.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/fonts/sale-italic.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/fonts/sale-italic-bold.ttf"
+            as="font"
+            type="font/ttf"
+            crossorigin
+        />
+
+        <!-- Structured Data (JSON-LD) -->
+        <script type="application/ld+json" is:inline>
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Stadsmarkt De Pijp",
+                "image": "https://stadsmarktdepijp.nl/images/logo.svg",
+                "description": "Biologische supermarkt in Amsterdam met lokale groenten, vis, vlees en kaas. Kwaliteit en ambacht op de eerste plaats.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Van Woustraat 103",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "Noord-Holland",
+                    "postalCode": "1074 AH",
+                    "addressCountry": "NL"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "52.3519",
+                    "longitude": "4.8933"
+                },
+                "telephone": "+31208944276",
+                "email": "mail@stadsmarktdepijp.nl",
+                "url": "https://stadsmarktdepijp.nl",
+                "priceRange": "€€",
+                "openingHoursSpecification": [
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday"
+                        ],
+                        "opens": "09:00",
+                        "closes": "20:00"
+                    },
+                    {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": "Sunday",
+                        "opens": "12:00",
+                        "closes": "18:00"
+                    }
+                ],
+                "sameAs": ["https://www.instagram.com/stadsmarktdepijp"]
+            }
+        </script>
+    </head>
+    <body>
+        <div id="splash-screen">
+            <div class="splash-content">
+                <Image
+                    src={Logo}
+                    alt="Stadsmarkt Logo"
+                    width="150"
+                    height="150"
+                />
+            </div>
+        </div>
+        <!-- <CustomCursor /> -->
+        <BackgroundTexture />
+        <Navigation />
+        <slot />
+        <Footer />
+    </body>
+
+    <style>
+        /* Full screen overlay met pure CSS animatie */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-light);
+            z-index: 9000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: splash-fade-out 0.5s ease-out forwards;
+            animation-delay: 1.5s;
+            pointer-events: none;
+        }
+
+        /* Verberg splash screen direct bij interne navigatie */
+        #splash-screen.hide-splash {
+            display: none;
+        }
+
+        .splash-content img {
+            animation: pulse 1s ease infinite;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes splash-fade-out {
+            from {
+                opacity: 1;
+                transform: scale(1);
+                visibility: visible;
+            }
+            to {
+                opacity: 0;
+                transform: scale(1.1);
+                visibility: hidden;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</html>
+<script>
+    import "../scripts/smooth-scroll";
+</script>
+
+<script is:inline>
+    // Check of we van een interne navigatie komen
+    const splash = document.getElementById("splash-screen");
+
+    // Check of deze page load via interne navigatie was
+    const isInternalNav = sessionStorage.getItem("is-internal-nav") === "true";
+
+    if (isInternalNav) {
+        // Verberg splash bij interne navigatie
+        splash.classList.add("hide-splash");
+        sessionStorage.removeItem("is-internal-nav");
+    }
+    // Anders: eerste bezoek of refresh - toon splash (default CSS gedrag)
+
+    // Mark interne navigatie voor volgende page load
+    document.addEventListener("click", (e) => {
+        const link = e.target.closest("a");
+        if (link && link.href && link.href.startsWith(window.location.origin)) {
+            if (link.target !== "_blank" && !link.href.includes("mailto:")) {
+                sessionStorage.setItem("is-internal-nav", "true");
+            }
+        }
+    });
+</script>

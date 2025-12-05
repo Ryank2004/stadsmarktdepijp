@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+import DePijp from "@images/DePijpSmall.webp";
+---
+
+<section class="find-us-section">
+    <div class="content">
+        <h3 class="title">Hier vind je ons!</h3>
+        <p>
+            In het hart van De Pijp, aan de<span> Van Woustraat 103</span>, vind je Stadsmarkt De Pijp. Tussen de gezellige cafés, boetiekjes en de geur van verse marktproducten ligt onze biologische supermarkt, precies daar waar het echte stadsleven bruist. Kom langs en proef de sfeer van de buurt.
+        </p>
+    </div>
+    <div class="image-container">
+        <Image
+            src={DePijp}
+            alt="Find Us Map"
+            width={1000}
+            height={800}
+            class="map"
+        />
+    </div>
+</section>
+
+<style>
+    .find-us-section {
+        padding: 4rem var(--container-padding-md) 4rem
+            var(--container-padding-md);
+    }
+
+    .image-container {
+        transition: transform 0.4s ease;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .image-container:hover {
+            transform: scale(1.08);
+            cursor: pointer;
+        }
+    }
+
+    .map {
+        width: 100%;
+        height: auto;
+    }
+
+    .title {
+        font-size: min(10vw, 44px);
+        padding-bottom: var(--spacing-md);
+    }
+
+    p span {
+        font-weight: 700;
+    }
+
+    .content {
+        padding-bottom: var(--spacing-lg);
+    }
+
+    @media screen and (min-width: 687px) {
+        .find-us-section {
+            padding: 6rem var(--container-padding-xl) 6rem
+                var(--container-padding-xl);
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .find-us-section {
+            padding: 8rem var(--container-padding-md) 8rem
+                var(--container-padding-lg);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2vw;
+        }
+
+        .content {
+            flex: 9;
+        }
+
+        .image-container {
+            flex: 10;
+        }
+
+        .title {
+            font-size: min(6vw, 64px);
+        }
+    }
+</style>

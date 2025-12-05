@@ -1,0 +1,137 @@
+---
+import { Image } from "astro:assets";
+import stadsmarkt from "@images/winkel-zijkant.webp";
+---
+
+<section class="image-divider-container">
+    <figure class="image-divider">
+        <Image
+            src={stadsmarkt}
+            alt="Market Image"
+            width={2000}
+            height={1300}
+            class="divider-image"
+        />
+    </figure>
+</section>
+
+<style>
+    .image-divider-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .image-divider {
+        position: relative;
+        margin: 0;
+        width: 100%;
+    }
+
+    .divider-image {
+        width: 100%;
+        height: 45vh;
+        /* transform: translateY(-20vh); */
+        object-fit: cover;
+        display: block;
+        will-change: transform;
+    }
+
+    .image-divider::before,
+    .image-divider::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+        background-color: var(--color-light);
+        z-index: 2;
+    }
+
+    .image-divider::before {
+        top: -1px;
+    }
+
+    .image-divider::after {
+        bottom: -1px;
+        transform: scaleY(-1);
+        background-color: var(--color-dark);
+    }
+
+    @media screen and (min-width: 687px) {
+        .divider-image {
+            height: 60vh;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .image-divider::before,
+        .image-divider::after {
+            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+        }
+
+        .divider-image {
+            height: 65vh;
+        }
+    }
+</style>
+
+<script>
+    function initImageParallax() {
+        const image = document.querySelector('.divider-image') as HTMLElement;
+        if (!image) return;
+
+        const startOffset = -30;
+
+        let ticking = false;
+
+        // Functie die parallax speed berekent op basis van viewport
+        const getParallaxSpeed = () => {
+            const width = window.innerWidth;
+            // Onder 687px: 70
+            if (width < 687) return 70;
+            
+            // Tussen 687px en 1024px: scale van 40 naar 100
+            if (width < 1024) {
+                return 70 + ((width - 687) / (1024 - 687)) * (100 - 70);
+            }
+            
+            // Boven 1024px: 100
+            return 100;
+        };
+
+        const updateParallax = () => {
+            const rect = image.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const parallaxSpeed = getParallaxSpeed();
+            
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                const parallaxAmount = startOffset + (scrollProgress * parallaxSpeed);
+                
+                image.style.transform = `translateY(${parallaxAmount}px)`;
+            }
+            
+            ticking = false;
+        };
+
+        const requestTick = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+        updateParallax();
+        window.addEventListener('resize', requestTick, { passive: true });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initImageParallax);
+    } else {
+        initImageParallax();
+    }
+</script>

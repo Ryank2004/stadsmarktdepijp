@@ -1,16 +1,23 @@
 ---
+import Layout from "@layout/layout.astro"
+import Hero from "@organisms/Hero.astro"
+import ImageDivider from "@organisms/ImageDivider.astro"
+import IntroText from "@organisms/IntroText.astro"
+import Product from "@organisms/Product.astro"
+import Marquee from "@organisms/Marquee.astro"
+import FindUs from "@organisms/FindUs.astro"
+import CardsStack from "@organisms/CardsStack.astro"
 
+// SEO - homepage gebruikt de defaults uit layout.astro
+// Automatisch: "Verse Bio Supermarkt Amsterdam De Pijp | Stadsmarkt De Pijp"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<Hero />
+	<IntroText />
+	<ImageDivider />
+	<CardsStack />
+	<Marquee />
+	<Product />
+	<FindUs />
+</Layout>

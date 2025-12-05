@@ -1,0 +1,207 @@
+---
+import posterImage from "@images/winkel-zijkant.webp";
+---
+
+<section class="hero">
+    <h1 class="big-title line-1">
+        Vers <span class="title-spacing">v</span>an ‘t
+    </h1>
+    <div class="header-image">
+        <video
+            id="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster={posterImage.src}
+            fetchpriority="high"
+            {...({ 'fetchpriority': 'high' } as any)}
+        >
+            <source
+                src="https://pub-1a25cf202b82430c9160c7cbb02d619e.r2.dev/sdp-promo.mp4"
+                type="video/mp4"
+            />
+        </video>
+
+        <div class="h1-box">
+            <h1 class="big-title line-2">Land!</h1>
+            <div class="corner left-top"></div>
+            <div class="corner right-bottom"></div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero {
+        padding: 9rem var(--container-padding-md) 2rem
+            var(--container-padding-md);
+    }
+
+    .hero .line-1,
+    .h1-box .line-2 {
+        line-height: 90%;
+        margin-bottom: 10px;
+    }
+
+    .title-spacing {
+        letter-spacing: -4px;
+    }
+
+    .hero .header-image {
+        width: 100%;
+        position: relative;
+        margin-top: calc((var(--title-size) * -1.65) + var(--row-gap));
+        pointer-events: none;
+    }
+
+    .h1-box h1 {
+        padding-left: 4vw;
+    }
+
+    .header-image {
+        height: auto;
+    }
+
+    .header-image video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 7 / 8;
+        border-radius: 25px;
+        position: relative;
+        object-fit: cover;
+    }
+
+    .header-image .h1-box {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        background-color: var(--color-light);
+        padding: 0 0 var(--col-gap) var(--col-gap);
+        border-radius: 0 0 0 25px;
+        user-select: none;
+    }
+
+    .home-header .header-image .h1-box .big-title {
+        margin-bottom: -0.1075em;
+        margin-left: -0.0175em;
+        margin-top: -0.025em;
+    }
+
+    .corner {
+        position: relative;
+        --corner-size: 1;
+        width: calc(25px * var(--corner-size));
+        height: calc(25px * var(--corner-size));
+        background-image: radial-gradient(
+            circle at 100% 100%,
+            transparent calc(25px * var(--corner-size)),
+            var(--color-light) calc((25px * var(--corner-size)) + 0.5px)
+        );
+    }
+
+    .corner.left-top {
+        position: absolute;
+        top: 0.5px;
+        left: 0.5px;
+        transform: translate(-100%, 0%) rotate(90deg);
+    }
+
+    .corner.right-bottom {
+        position: absolute;
+        right: 0.5px;
+        bottom: 0.5px;
+        transform: translate(0%, 100%) rotate(90deg);
+    }
+
+    @media screen and (min-width: 687px) {
+        .hero {
+            padding: 9.5rem var(--container-padding-sm) 2rem
+                var(--container-padding-sm);
+        }
+
+        .hero .line-1 {
+            padding: 0 var(--container-padding-lg) 0;
+        }
+
+        .h1-box .line-2 {
+            padding: 0 var(--container-padding-lg) 0 2vw;
+        }
+
+        .header-image video {
+            height: 50vh;
+            border-radius: var(--border-radius);
+        }
+
+        .header-image .h1-box {
+            border-radius: 0 0 0 var(--border-radius);
+        }
+
+        .corner {
+            width: calc(var(--border-radius) * var(--corner-size));
+            height: calc(var(--border-radius) * var(--corner-size));
+            background-image: radial-gradient(
+                circle at 100% 100%,
+                transparent calc(var(--border-radius) * var(--corner-size)),
+                var(--color-light)
+                    calc((var(--border-radius) * var(--corner-size)) + 0.5px)
+            );
+        }
+    }
+
+    @media screen and (min-width: 787px) {
+        .hero {
+            padding: 10rem var(--container-padding-sm) 2rem
+                var(--container-padding-sm);
+        }
+
+        .title-spacing {
+            letter-spacing: -14px;
+        }
+
+        .header-image img {
+            height: 60vh;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .hero {
+            padding: 10.5rem var(--container-padding-sm) 2rem
+                var(--container-padding-sm);
+        }
+
+        .header-image video {
+            height: 70vh;
+        }
+    }
+
+    @media screen and (min-width: 1224px) {
+        .hero {
+            padding: 11.5rem var(--container-padding-sm) 2rem
+                var(--container-padding-sm);
+        }
+
+        .header-image video {
+            height: 80vh;
+        }
+    }
+</style>
+
+<script>
+    // Safari Fix: Dwing de browser te luisteren
+    document.addEventListener("DOMContentLoaded", () => {
+        const video = document.getElementById("hero-video") as HTMLVideoElement;
+
+        if (video) {
+            // 1. Dwing de 'muted' status via JavaScript (Safari negeert HTML soms)
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+
+            // 2. Geef een schop onder de kont om te starten
+            video.play().catch(() => {
+                // Autoplay geblokkeerd - stille fallback
+            });
+        }
+    });
+</script>
