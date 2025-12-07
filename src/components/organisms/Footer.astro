@@ -33,7 +33,7 @@
                 <div class="footer-info">
                     <p>Stadsmarkt De Pijp</p>
                     <p>KVK: 60606983</p>
-                    <p>BTW: NL0202039</p>
+                    <p>BTW: NL853981097B01</p>
                     <a
                         href="https://www.instagram.com/stadsmarktdepijp?igsh=ODd2MWp5OTd4eDA0"
                         target="_blank"
@@ -42,6 +42,14 @@
                     >
                         Volg ons op Instagram
                     </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-heading">Openingstijden</h3>
+                <div class="footer-info opening-hours">
+                    <p>Ma - Za: 09:00 - 20:00</p>
+                    <p>Zondag: 10:00 - 20:00</p>
                 </div>
             </div>
         </div>
@@ -111,9 +119,20 @@
     @media (min-width: 768px) {
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             padding: 6rem 3rem 2rem;
-            max-width: 1000px;
+            max-width: 1400px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .footer-grid {
+            grid-template-columns: repeat(4, 1fr);
+            padding: 6rem 5rem 2rem;
+        }
+
+        .footer {
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
         }
     }
 
@@ -173,16 +192,6 @@
         font-size: 0.875rem;
         color: var(--color-dark);
         border-bottom: 1px solid var(--color-dark);
-    }
-
-        @media (min-width: 1024px) {
-        .footer {
-            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-        }
-
-        .footer-grid {
-            padding: 6rem 5rem 2rem;
-        }
     }
 </style>
 
