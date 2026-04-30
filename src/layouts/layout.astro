@@ -81,6 +81,21 @@ const imageUrl = new URL(image, siteUrl).href;
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-18109424275');
+
+            function gtag_report_conversion(url) {
+                var callback = function () {
+                    if (typeof(url) != 'undefined') {
+                        window.location = url;
+                    }
+                };
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-18109424275/AOYcCL21jKUcEJPFn7tD',
+                    'value': 1.0,
+                    'currency': 'EUR',
+                    'event_callback': callback
+                });
+                return false;
+            }
         </script>
 
         <!-- Preconnect for Performance -->
