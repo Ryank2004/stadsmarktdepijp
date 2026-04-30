@@ -74,6 +74,15 @@ const imageUrl = new URL(image, siteUrl).href;
         <meta name="author" content="Stadsmarkt De Pijp" />
         <meta name="language" content="Dutch" />
 
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18109424275" is:inline></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18109424275');
+        </script>
+
         <!-- Preconnect for Performance -->
         <link rel="preconnect" href="https://cdn.contentful.com" />
         <link
