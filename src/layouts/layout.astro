@@ -1,5 +1,6 @@
 ---
 import BackgroundTexture from "@atoms/BackgroundTexture.astro";
+import CookieBanner from "@atoms/CookieBanner.astro";
 // import CustomCursor from "@molecules/CustomCursor.astro";
 import Footer from "@organisms/Footer.astro";
 import Navigation from "@organisms/Navigation.astro";
@@ -74,29 +75,7 @@ const imageUrl = new URL(image, siteUrl).href;
         <meta name="author" content="Stadsmarkt De Pijp" />
         <meta name="language" content="Dutch" />
 
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18109424275" is:inline></script>
-        <script is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-18109424275');
-
-            function gtag_report_conversion(url) {
-                var callback = function () {
-                    if (typeof(url) != 'undefined') {
-                        window.location = url;
-                    }
-                };
-                gtag('event', 'conversion', {
-                    'send_to': 'AW-18109424275/AOYcCL21jKUcEJPFn7tD',
-                    'value': 1.0,
-                    'currency': 'EUR',
-                    'event_callback': callback
-                });
-                return false;
-            }
-        </script>
+        <!-- Google tag wordt geladen via CookieBanner na toestemming -->
 
         <!-- Preconnect for Performance -->
         <link rel="preconnect" href="https://cdn.contentful.com" />
@@ -196,6 +175,7 @@ const imageUrl = new URL(image, siteUrl).href;
         <Navigation />
         <slot />
         <Footer />
+        <CookieBanner />
     </body>
 
     <style>
