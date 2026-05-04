@@ -21,7 +21,11 @@ const bedrijfProduct = product.bedrijfProduct as string;
     <div class="product-inner">
         <div class="product-image-wrapper">
             <img
-                src={imageUrl ? `https:${imageUrl}` : ""}
+                src={imageUrl ? `https:${imageUrl}?w=800&fm=webp&q=80` : ""}
+                srcset={imageUrl
+                    ? `https:${imageUrl}?w=400&fm=webp&q=80 400w, https:${imageUrl}?w=800&fm=webp&q=80 800w`
+                    : undefined}
+                sizes="(min-width: 868px) 40vw, min(500px, 100vw)"
                 alt={productNaam}
                 class="product-image"
                 width="800"
