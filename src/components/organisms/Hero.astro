@@ -1,5 +1,9 @@
 ---
-import posterImage from "@images/winkel-zijkant.webp";
+import { getImage } from "astro:assets";
+import posterImageSrc from "@images/winkel-zijkant.webp";
+
+const posterMobile = await getImage({ src: posterImageSrc, width: 480, height: 312, format: "webp", quality: 75 });
+const posterDesktop = await getImage({ src: posterImageSrc, width: 1200, height: 780, format: "webp", quality: 75 });
 ---
 
 <section class="hero">
@@ -14,7 +18,8 @@ import posterImage from "@images/winkel-zijkant.webp";
             loop
             playsinline
             preload="auto"
-            poster={posterImage.src}
+            poster={posterDesktop.src}
+            data-poster-mobile={posterMobile.src}
             fetchpriority="high"
             {...({ 'fetchpriority': 'high' } as any)}
         >
@@ -197,6 +202,11 @@ import posterImage from "@images/winkel-zijkant.webp";
         const video = document.getElementById("hero-video") as HTMLVideoElement;
 
         if (video) {
+            // Laad kleinere poster op mobiel
+            if (window.innerWidth < 687 && video.dataset.posterMobile) {
+                video.poster = video.dataset.posterMobile;
+            }
+
             // 1. Dwing de 'muted' status via JavaScript (Safari negeert HTML soms)
             video.muted = true;
             video.defaultMuted = true;
