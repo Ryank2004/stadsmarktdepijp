@@ -18,7 +18,7 @@
 
 @font-face {
    font-family: "Sale-bold";
-   src: url(/fonts/sale-italic-bold.ttf);
+   src: url(/fonts/sale-bold-italic.woff2);
    font-display: swap;
 }
 :root {

@@ -78,15 +78,16 @@ const seoDescription = "Ontdek waar onze ingrediënten vandaan komen. Lokale boe
                                 data-pin-data={JSON.stringify({
                                     name: pin.naam,
                                     description: pin.beschrijvingHtml,
-                                    imgSrc: pin.fotoUrl,
+                                    imgSrc: pin.fotoUrl ? `${pin.fotoUrl}?w=400&fm=webp&q=80` : "",
                                 })}
                             >
                                 <div class="pin-inner">
                                     <img
-                                        src={pin.fotoUrl}
+                                        src={pin.fotoUrl ? `${pin.fotoUrl}?w=80&fm=webp&q=70` : ""}
                                         alt={pin.naam}
-                                        width="600"
-                                        height="600"
+                                        width="80"
+                                        height="80"
+                                        loading="lazy"
                                     />
                                 </div>
                             </div>
