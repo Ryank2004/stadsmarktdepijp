@@ -76,6 +76,24 @@ const imageUrl = new URL(image, siteUrl).href;
         <meta name="language" content="Dutch" />
 
         <!-- Google tag wordt geladen via CookieBanner na toestemming -->
+        <script is:inline>
+            function gtag_report_conversion(url) {
+                if (typeof window.gtag === 'function') {
+                    var callback = function () {
+                        if (typeof url !== 'undefined') window.location = url;
+                    };
+                    window.gtag('event', 'conversion', {
+                        'send_to': 'AW-18109424275/AOYcCL21jKUcEJPFn7tD',
+                        'value': 1.0,
+                        'currency': 'EUR',
+                        'event_callback': callback
+                    });
+                    return false;
+                }
+                window.location = url;
+                return false;
+            }
+        </script>
 
         <!-- Preconnect for Performance -->
         <link rel="preconnect" href="https://cdn.contentful.com" />
