@@ -13,6 +13,7 @@ const posterDesktop = await getImage({ src: posterImageSrc, width: 1200, height:
     <div class="header-image">
         <video
             id="hero-video"
+            src="https://pub-d40a471877504971ba24ce1c9a42a275.r2.dev/stadsmarkt-promo.mp4"
             autoplay
             muted
             loop
@@ -20,18 +21,7 @@ const posterDesktop = await getImage({ src: posterImageSrc, width: 1200, height:
             preload="auto"
             poster={posterDesktop.src}
             data-poster-mobile={posterMobile.src}
-            fetchpriority="high"
-            {...({ 'fetchpriority': 'high' } as any)}
-        >
-            <source
-                src="https://pub-d40a471877504971ba24ce1c9a42a275.r2.dev/stadsmarkt-promo.webm"
-                type="video/webm"
-            />
-            <source
-                src="https://pub-d40a471877504971ba24ce1c9a42a275.r2.dev/stadsmarkt-promo.mp4"
-                type="video/mp4"
-            />
-        </video>
+        ></video>
 
         <div class="h1-box">
             <h1 class="big-title line-2">Land!</h1>
@@ -197,25 +187,14 @@ const posterDesktop = await getImage({ src: posterImageSrc, width: 1200, height:
 </style>
 
 <script>
-    // Safari Fix: Dwing de browser te luisteren
-    document.addEventListener("DOMContentLoaded", () => {
-        const video = document.getElementById("hero-video") as HTMLVideoElement;
-
-        if (video) {
-            // Laad kleinere poster op mobiel
-            if (window.innerWidth < 687 && video.dataset.posterMobile) {
-                video.poster = video.dataset.posterMobile;
-            }
-
-            // 1. Dwing de 'muted' status via JavaScript (Safari negeert HTML soms)
-            video.muted = true;
-            video.defaultMuted = true;
-            video.playsInline = true;
-
-            // 2. Geef een schop onder de kont om te starten
-            video.play().catch(() => {
-                // Autoplay geblokkeerd - stille fallback
-            });
+    const video = document.getElementById("hero-video") as HTMLVideoElement;
+    if (video) {
+        if (window.innerWidth < 687 && video.dataset.posterMobile) {
+            video.poster = video.dataset.posterMobile;
         }
-    });
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        video.play().catch(() => {});
+    }
 </script>
